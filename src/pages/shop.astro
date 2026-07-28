@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ProductCard from "../components/ProductCard.astro";
-import { products, categories } from "../data/products";
+import { products, categories, useCases } from "../data/products";
 
 const slugify = (label: string) => label.toLowerCase().replace(/&/g, "").replace(/\s+/g, "-").replace(/-+/g, "-");
 ---
@@ -18,22 +18,41 @@ const slugify = (label: string) => label.toLowerCase().replace(/&/g, "").replace
   </section>
 
   <section class="mx-auto max-w-7xl px-6 py-10 lg:px-10">
-    <div class="flex flex-wrap gap-3" id="filter-bar">
-      {categories.map((category) => (
-        <button
-          id={category === "All" ? undefined : slugify(category)}
-          class="filter-btn border border-pdw-border px-4 py-2 font-display text-xs uppercase tracking-wide text-pdw-body transition-colors data-[active=true]:border-pdw-tan data-[active=true]:text-pdw-tan-dark scroll-mt-32"
-          data-category={category}
-          data-active={category === "All" ? "true" : "false"}
-        >
-          {category}
-        </button>
-      ))}
+    <div>
+      <p class="font-display text-xs uppercase tracking-widest text-pdw-muted">Shop by Type</p>
+      <div class="mt-3 flex flex-wrap gap-3" id="category-filter-bar">
+        {categories.map((category) => (
+          <button
+            id={category === "All" ? undefined : slugify(category)}
+            class="filter-btn category-filter-btn scroll-mt-32 border border-pdw-border px-4 py-2 font-display text-xs uppercase tracking-wide text-pdw-body transition-colors data-[active=true]:border-pdw-tan data-[active=true]:text-pdw-tan-dark"
+            data-category={category}
+            data-active={category === "All" ? "true" : "false"}
+          >
+            {category}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-6">
+      <p class="font-display text-xs uppercase tracking-widest text-pdw-muted">Shop by Use Case</p>
+      <div class="mt-3 flex flex-wrap gap-3" id="usecase-filter-bar">
+        {useCases.map((useCase) => (
+          <button
+            id={useCase === "All" ? undefined : slugify(useCase)}
+            class="filter-btn usecase-filter-btn scroll-mt-32 border border-pdw-border px-4 py-2 font-display text-xs uppercase tracking-wide text-pdw-body transition-colors data-[active=true]:border-pdw-tan data-[active=true]:text-pdw-tan-dark"
+            data-usecase={useCase}
+            data-active={useCase === "All" ? "true" : "false"}
+          >
+            {useCase}
+          </button>
+        ))}
+      </div>
     </div>
 
     <div id="product-grid" class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {products.map((product) => (
-        <div class="product-item" data-category={product.category}>
+        <div class="product-item" data-category={product.category} data-usecase={product.useCase}>
           <ProductCard product={product} />
         </div>
       ))}
@@ -43,26 +62,45 @@ const slugify = (label: string) => label.toLowerCase().replace(/&/g, "").replace
 
 <script>
   function initFilters() {
-    const buttons = document.querySelectorAll<HTMLButtonElement>(".filter-btn");
+    const categoryButtons = document.querySelectorAll<HTMLButtonElement>(".category-filter-btn");
+    const usecaseButtons = document.querySelectorAll<HTMLButtonElement>(".usecase-filter-btn");
     const items = document.querySelectorAll<HTMLElement>(".product-item");
 
-    function applyFilter(category: string | undefined) {
-      buttons.forEach((b) => (b.dataset.active = String(b.dataset.category === category)));
+    let activeCategory = "All";
+    let activeUsecase = "All";
+
+    function render() {
+      categoryButtons.forEach((b) => (b.dataset.active = String(b.dataset.category === activeCategory)));
+      usecaseButtons.forEach((b) => (b.dataset.active = String(b.dataset.usecase === activeUsecase)));
       items.forEach((item) => {
-        const show = category === "All" || item.dataset.category === category;
-        item.style.display = show ? "" : "none";
+        const matchesCategory = activeCategory === "All" || item.dataset.category === activeCategory;
+        const matchesUsecase = activeUsecase === "All" || item.dataset.usecase === activeUsecase;
+        item.style.display = matchesCategory && matchesUsecase ? "" : "none";
       });
     }
 
-    buttons.forEach((button) => {
-      button.addEventListener("click", () => applyFilter(button.dataset.category));
+    categoryButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        activeCategory = button.dataset.category ?? "All";
+        render();
+      });
+    });
+
+    usecaseButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        activeUsecase = button.dataset.usecase ?? "All";
+        render();
+      });
     });
 
     const hash = decodeURIComponent(window.location.hash.replace("#", ""));
     if (hash) {
-      const match = Array.from(buttons).find((b) => b.id === hash);
-      if (match) applyFilter(match.dataset.category);
+      const categoryMatch = Array.from(categoryButtons).find((b) => b.id === hash);
+      const usecaseMatch = Array.from(usecaseButtons).find((b) => b.id === hash);
+      if (categoryMatch) activeCategory = categoryMatch.dataset.category ?? "All";
+      if (usecaseMatch) activeUsecase = usecaseMatch.dataset.usecase ?? "All";
     }
+    render();
   }
   initFilters();
 </script>

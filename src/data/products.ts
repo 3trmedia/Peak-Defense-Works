@@ -1,9 +1,12 @@
+export type UseCase = "Tactical" | "Competition" | "Concealed Carry";
+
 export type Product = {
   slug: string;
   name: string;
   price: number;
   compareAt?: number;
   category: "Chassis & Rifle Kits" | "Holsters & Carry" | "Parts & Accessories";
+  useCase: UseCase;
   image?: string;
   blurb: string;
   status?: "coming-soon" | "sale";
@@ -16,6 +19,7 @@ export const products: Product[] = [
     name: "TX22 Mountain Chassis + FRT",
     price: 149.99,
     category: "Chassis & Rifle Kits",
+    useCase: "Tactical",
     image: "/images/products/tx7-mtn2-chassis.jpg",
     blurb: "Our flagship build. A folding brace chassis with forced-reset trigger for the Taurus TX22, built to turn a $300 pistol into a compact range machine.",
     featured: true,
@@ -25,6 +29,7 @@ export const products: Product[] = [
     name: "Precision Rifle 22LR Body Kit",
     price: 179.99,
     category: "Chassis & Rifle Kits",
+    useCase: "Competition",
     image: "/images/products/antimatter-optic-rail.jpg",
     blurb: "Full-length chassis for shooters who want a dedicated rimfire precision platform, not just a pistol brace. Built for a long rail and real glass.",
     featured: true,
@@ -34,6 +39,7 @@ export const products: Product[] = [
     name: "Flux Defense IWB Holster",
     price: 54.99,
     category: "Holsters & Carry",
+    useCase: "Concealed Carry",
     blurb: "Inside-the-waistband carry built for chassis-equipped pistols. Sourced through our Flux Defense partnership.",
   },
   {
@@ -41,6 +47,7 @@ export const products: Product[] = [
     name: "Flux Defense OWB Holster",
     price: 59.99,
     category: "Holsters & Carry",
+    useCase: "Concealed Carry",
     blurb: "Outside-the-waistband retention holster for range and competition use. Same Flux Defense build quality, open carry fit.",
   },
   {
@@ -48,6 +55,7 @@ export const products: Product[] = [
     name: "AR-15 Gas Block Vise Block",
     price: 29.99,
     category: "Parts & Accessories",
+    useCase: "Tactical",
     blurb: "A shop tool, not a chassis part. Holds AR-pattern gas blocks steady for pinning and staking without marring the finish.",
   },
   {
@@ -56,6 +64,7 @@ export const products: Product[] = [
     price: 7.0,
     compareAt: 12.0,
     category: "Parts & Accessories",
+    useCase: "Tactical",
     image: "/images/products/uv5r-button-guard.jpg",
     blurb: "Machined guard that keeps radio buttons from getting bumped in a plate carrier or range bag pocket.",
     status: "sale",
@@ -65,6 +74,7 @@ export const products: Product[] = [
     name: "Flared Magwell Extension",
     price: 23.99,
     category: "Parts & Accessories",
+    useCase: "Competition",
     image: "https://peakdefenseworks.com/cdn/shop/files/222A9318.jpg?v=1778576419&width=1200",
     blurb: "Flared magwell for faster reloads under pressure. Drops straight into the factory TX22 frame, no fitting required.",
   },
@@ -73,6 +83,8 @@ export const products: Product[] = [
     name: "3D Printed Foregrip",
     price: 19.99,
     category: "Parts & Accessories",
+    useCase: "Tactical",
+    image: "/images/products/foregrip-cad.jpg",
     blurb: "Lightweight foregrip printed in-house on the same production line as our chassis systems. Multiple color options.",
   },
   {
@@ -80,6 +92,8 @@ export const products: Product[] = [
     name: "3D Printed Hand Grip",
     price: 17.99,
     category: "Parts & Accessories",
+    useCase: "Tactical",
+    image: "/images/products/handgrip-detail.jpg",
     blurb: "Drop-in replacement grip panel for a more aggressive texture and better control under recoil.",
   },
   {
@@ -87,6 +101,8 @@ export const products: Product[] = [
     name: "Killflash & Scope Cap Set",
     price: 21.99,
     category: "Parts & Accessories",
+    useCase: "Tactical",
+    image: "/images/products/killflash-on-rifle.jpg",
     blurb: "Anti-reflection killflash and matching flip caps for your optic. Keeps glass protected and glare down on the line.",
   },
   {
@@ -94,6 +110,7 @@ export const products: Product[] = [
     name: "Custom Cerakote Finish",
     price: 219.99,
     category: "Chassis & Rifle Kits",
+    useCase: "Tactical",
     blurb: "Send your chassis in for a custom Cerakote finish. Color and pattern options are still being finalized.",
     status: "coming-soon",
   },
@@ -102,6 +119,7 @@ export const products: Product[] = [
     name: "TX22 Trigger Upgrade",
     price: 89.99,
     category: "Chassis & Rifle Kits",
+    useCase: "Competition",
     blurb: "A lighter, crisper trigger shoe to pair with the FRT. In testing now.",
     status: "coming-soon",
   },
@@ -110,9 +128,17 @@ export const products: Product[] = [
     name: "New Platform Chassis",
     price: 0,
     category: "Chassis & Rifle Kits",
+    useCase: "Tactical",
     blurb: "We're scoping chassis support for additional pistol platforms beyond the TX22. Details soon.",
     status: "coming-soon",
   },
 ];
 
 export const categories = ["All", "Chassis & Rifle Kits", "Holsters & Carry", "Parts & Accessories"] as const;
+export const useCases = ["All", "Tactical", "Competition", "Concealed Carry"] as const;
+
+export const useCaseImages: Record<UseCase, string> = {
+  Tactical: "/images/products/handgrip-detail.jpg",
+  Competition: "/images/products/antimatter-optic-rail.jpg",
+  "Concealed Carry": "/images/products/chassis-in-hand.jpg",
+};
