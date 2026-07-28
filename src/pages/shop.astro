@@ -1,0 +1,60 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ProductCard from "../components/ProductCard.astro";
+import { products, categories } from "../data/products";
+---
+
+<Layout title="Shop">
+  <section class="border-b border-pdw-border bg-pdw-charcoal">
+    <div class="mx-auto max-w-7xl px-6 py-12 lg:px-10">
+      <p class="font-display text-sm uppercase tracking-[0.2em] text-pdw-copper">The Full Lineup</p>
+      <h1 class="mt-2 font-display text-3xl font-bold uppercase text-pdw-cream sm:text-4xl">Shop Peak Defense Works</h1>
+      <p class="mt-3 max-w-2xl text-sm text-pdw-muted">
+        This storefront is a work in progress. Catalog and checkout are being built out over the coming months.
+      </p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-6 py-10 lg:px-10">
+    <div class="flex flex-wrap gap-3" id="filter-bar">
+      {categories.map((category) => (
+        <button
+          class="filter-btn border border-pdw-border px-4 py-2 font-display text-xs uppercase tracking-wide text-pdw-muted transition-colors data-[active=true]:border-pdw-copper data-[active=true]:text-pdw-copper"
+          data-category={category}
+          data-active={category === "All" ? "true" : "false"}
+        >
+          {category}
+        </button>
+      ))}
+    </div>
+
+    <div id="product-grid" class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {products.map((product) => (
+        <div class="product-item" data-category={product.category}>
+          <ProductCard product={product} />
+        </div>
+      ))}
+    </div>
+  </section>
+</Layout>
+
+<script>
+  function initFilters() {
+    const buttons = document.querySelectorAll<HTMLButtonElement>(".filter-btn");
+    const items = document.querySelectorAll<HTMLElement>(".product-item");
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const category = button.dataset.category;
+        buttons.forEach((b) => (b.dataset.active = "false"));
+        button.dataset.active = "true";
+
+        items.forEach((item) => {
+          const show = category === "All" || item.dataset.category === category;
+          item.style.display = show ? "" : "none";
+        });
+      });
+    });
+  }
+  initFilters();
+</script>

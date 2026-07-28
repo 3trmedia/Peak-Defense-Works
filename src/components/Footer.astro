@@ -1,0 +1,61 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-pdw-border bg-pdw-charcoal">
+  <div class="mx-auto max-w-7xl px-6 py-14 lg:px-10">
+    <div class="grid gap-10 md:grid-cols-4">
+      <div>
+        <p class="font-display text-lg font-bold uppercase tracking-widest text-pdw-cream">
+          Peak <span class="text-pdw-copper">Defense</span> Works
+        </p>
+        <p class="mt-3 max-w-xs text-sm text-pdw-muted">
+          Custom chassis systems and accessories for the Taurus TX22, designed and machined in Utah.
+        </p>
+      </div>
+
+      <div>
+        <p class="font-display text-sm uppercase tracking-widest text-pdw-cream">Shop</p>
+        <ul class="mt-3 space-y-2 text-sm text-pdw-muted">
+          <li><a href="/shop" class="hover:text-pdw-copper">All Products</a></li>
+          <li><a href="/shop#chassis" class="hover:text-pdw-copper">Chassis Systems</a></li>
+          <li><a href="/shop#accessories" class="hover:text-pdw-copper">Accessories</a></li>
+          <li><a href="/shop#soft-goods" class="hover:text-pdw-copper">Soft Goods</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="font-display text-sm uppercase tracking-widest text-pdw-cream">Company</p>
+        <ul class="mt-3 space-y-2 text-sm text-pdw-muted">
+          <li><a href="/about" class="hover:text-pdw-copper">About Us</a></li>
+          <li><a href="/contact" class="hover:text-pdw-copper">Contact</a></li>
+          <li><a href="/contact#returns" class="hover:text-pdw-copper">Shipping &amp; Returns</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="font-display text-sm uppercase tracking-widest text-pdw-cream">Stay Updated</p>
+        <p class="mt-3 text-sm text-pdw-muted">New chassis drops and range-day updates. No spam.</p>
+        <form class="mt-3 flex" onsubmit="return false">
+          <input
+            type="email"
+            required
+            placeholder="Email address"
+            class="w-full border border-pdw-border bg-pdw-black px-3 py-2 text-sm text-pdw-cream placeholder:text-pdw-muted focus:border-pdw-copper focus:outline-none"
+          />
+          <button
+            type="submit"
+            class="border border-l-0 border-pdw-copper bg-pdw-copper px-4 py-2 font-display text-sm uppercase text-pdw-black transition-colors hover:bg-pdw-copper-hover"
+          >
+            Join
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-pdw-border pt-6 text-xs text-pdw-muted md:flex-row">
+      <p>&copy; {year} Peak Defense Works. All rights reserved.</p>
+      <p>Demo storefront in progress. Built by Blackout Media.</p>
+    </div>
+  </div>
+</footer>
