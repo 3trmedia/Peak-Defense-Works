@@ -4,15 +4,18 @@
   --font-display: "Oswald", "Arial Narrow", sans-serif;
   --font-body: "Inter", system-ui, sans-serif;
 
-  --color-pdw-black: #101113;
-  --color-pdw-charcoal: #1A1C1F;
-  --color-pdw-surface: #212327;
-  --color-pdw-border: #2C2F34;
-  --color-pdw-copper: #BD6B2D;
-  --color-pdw-copper-hover: #9C561F;
-  --color-pdw-cream: #EEEBE4;
-  --color-pdw-muted: #98958D;
-  --color-pdw-success: #4A7C59;
+  --color-pdw-white: #FFFFFF;
+  --color-pdw-offwhite: #F6F5F1;
+  --color-pdw-ink: #1A1A18;
+  --color-pdw-body: #4A4944;
+  --color-pdw-muted: #86837B;
+  --color-pdw-border: #E4E1D8;
+  --color-pdw-dark: #151414;
+  --color-pdw-dark-surface: #1E1D1B;
+
+  --color-pdw-tan: #BAA477;
+  --color-pdw-tan-dark: #9E8B65;
+  --color-pdw-tan-light: #EFE9DB;
 }
 
 html {
@@ -20,8 +23,8 @@ html {
 }
 
 body {
-  background-color: var(--color-pdw-black);
-  color: var(--color-pdw-cream);
+  background-color: var(--color-pdw-white);
+  color: var(--color-pdw-ink);
   font-family: var(--font-body);
 }
 

@@ -2,58 +2,67 @@
 const year = new Date().getFullYear();
 ---
 
-<footer class="border-t border-pdw-border bg-pdw-charcoal">
+<section class="border-t border-pdw-dark-surface bg-pdw-dark">
+  <div class="mx-auto max-w-5xl px-6 py-16 text-center lg:px-10">
+    <p class="font-display text-sm uppercase tracking-[0.2em] text-pdw-tan">Stay in the Loop</p>
+    <h2 class="mt-3 font-display text-2xl font-bold uppercase text-pdw-white sm:text-3xl">Sign Up for New Product Drops</h2>
+    <p class="mt-3 text-sm text-pdw-muted">Be first to know when the next chassis, finish, or accessory ships.</p>
+    <form class="mx-auto mt-6 flex max-w-md" onsubmit="return false">
+      <input
+        type="email"
+        required
+        placeholder="Email address"
+        class="w-full border border-pdw-dark-surface bg-pdw-dark-surface px-4 py-3 text-sm text-pdw-white placeholder:text-pdw-muted focus:border-pdw-tan focus:outline-none"
+      />
+      <button
+        type="submit"
+        class="shrink-0 border border-pdw-tan bg-pdw-tan px-6 py-3 font-display text-sm uppercase tracking-wide text-pdw-ink transition-colors hover:bg-pdw-tan-dark"
+      >
+        Join
+      </button>
+    </form>
+  </div>
+</section>
+
+<footer class="bg-pdw-dark">
   <div class="mx-auto max-w-7xl px-6 py-14 lg:px-10">
-    <div class="grid gap-10 md:grid-cols-4">
+    <div class="grid gap-10 border-t border-pdw-dark-surface pt-12 md:grid-cols-4">
       <div>
-        <p class="font-display text-lg font-bold uppercase tracking-widest text-pdw-cream">
-          Peak <span class="text-pdw-copper">Defense</span> Works
+        <p class="font-display text-lg font-bold uppercase tracking-widest text-pdw-white">
+          Peak <span class="text-pdw-tan">Defense</span> Works
         </p>
         <p class="mt-3 max-w-xs text-sm text-pdw-muted">
-          Custom chassis systems and accessories for the Taurus TX22, designed and machined in Utah.
+          Custom chassis systems and accessories for the Taurus TX22, designed and 3D printed in Utah.
         </p>
       </div>
 
       <div>
-        <p class="font-display text-sm uppercase tracking-widest text-pdw-cream">Shop</p>
+        <p class="font-display text-sm uppercase tracking-widest text-pdw-white">Shop</p>
         <ul class="mt-3 space-y-2 text-sm text-pdw-muted">
-          <li><a href="/shop" class="hover:text-pdw-copper">All Products</a></li>
-          <li><a href="/shop#chassis" class="hover:text-pdw-copper">Chassis Systems</a></li>
-          <li><a href="/shop#accessories" class="hover:text-pdw-copper">Accessories</a></li>
-          <li><a href="/shop#soft-goods" class="hover:text-pdw-copper">Soft Goods</a></li>
+          <li><a href="/shop" class="hover:text-pdw-tan">All Products</a></li>
+          <li><a href="/shop#chassis-rifle-kits" class="hover:text-pdw-tan">Chassis &amp; Rifle Kits</a></li>
+          <li><a href="/shop#holsters-carry" class="hover:text-pdw-tan">Holsters &amp; Carry</a></li>
+          <li><a href="/shop#parts-accessories" class="hover:text-pdw-tan">Parts &amp; Accessories</a></li>
         </ul>
       </div>
 
       <div>
-        <p class="font-display text-sm uppercase tracking-widest text-pdw-cream">Company</p>
+        <p class="font-display text-sm uppercase tracking-widest text-pdw-white">Company</p>
         <ul class="mt-3 space-y-2 text-sm text-pdw-muted">
-          <li><a href="/about" class="hover:text-pdw-copper">About Us</a></li>
-          <li><a href="/contact" class="hover:text-pdw-copper">Contact</a></li>
-          <li><a href="/contact#returns" class="hover:text-pdw-copper">Shipping &amp; Returns</a></li>
+          <li><a href="/about" class="hover:text-pdw-tan">About Us</a></li>
+          <li><a href="/contact" class="hover:text-pdw-tan">Contact</a></li>
+          <li><a href="/contact#returns" class="hover:text-pdw-tan">Shipping &amp; Returns</a></li>
         </ul>
       </div>
 
       <div>
-        <p class="font-display text-sm uppercase tracking-widest text-pdw-cream">Stay Updated</p>
-        <p class="mt-3 text-sm text-pdw-muted">New chassis drops and range-day updates. No spam.</p>
-        <form class="mt-3 flex" onsubmit="return false">
-          <input
-            type="email"
-            required
-            placeholder="Email address"
-            class="w-full border border-pdw-border bg-pdw-black px-3 py-2 text-sm text-pdw-cream placeholder:text-pdw-muted focus:border-pdw-copper focus:outline-none"
-          />
-          <button
-            type="submit"
-            class="border border-l-0 border-pdw-copper bg-pdw-copper px-4 py-2 font-display text-sm uppercase text-pdw-black transition-colors hover:bg-pdw-copper-hover"
-          >
-            Join
-          </button>
-        </form>
+        <p class="font-display text-sm uppercase tracking-widest text-pdw-white">Based In</p>
+        <p class="mt-3 text-sm text-pdw-muted">Central Utah</p>
+        <p class="mt-4 text-sm text-pdw-muted">support@peakdefenseworks.com</p>
       </div>
     </div>
 
-    <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-pdw-border pt-6 text-xs text-pdw-muted md:flex-row">
+    <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-pdw-dark-surface pt-6 text-xs text-pdw-muted md:flex-row">
       <p>&copy; {year} Peak Defense Works. All rights reserved.</p>
       <p>Demo storefront in progress. Built by Blackout Media.</p>
     </div>

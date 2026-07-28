@@ -9,99 +9,155 @@ const newest = products.slice(0, 8);
 
 <Layout title="Home">
   <!-- Hero -->
-  <section class="relative overflow-hidden border-b border-pdw-border bg-pdw-black">
-    <div class="mx-auto grid max-w-7xl items-center gap-10 px-6 py-16 lg:grid-cols-2 lg:px-10 lg:py-24">
-      <div>
-        <p class="font-display text-sm uppercase tracking-[0.2em] text-pdw-copper">Utah Made. Range Tested.</p>
-        <h1 class="mt-4 font-display text-4xl font-bold uppercase leading-tight text-pdw-cream sm:text-5xl lg:text-6xl">
-          Chassis Systems Built for the <span class="text-pdw-copper">TX22</span>
-        </h1>
-        <p class="mt-6 max-w-lg text-pdw-muted">
-          Peak Defense Works designs and machines custom chassis, braces, and accessories for the Taurus TX22,
-          from the first MP7-style build on the platform to the small parts that make it shoot right.
-        </p>
-        <div class="mt-8 flex flex-wrap gap-4">
-          <a
-            href="/shop"
-            class="border border-pdw-copper bg-pdw-copper px-6 py-3 font-display text-sm uppercase tracking-wide text-pdw-black transition-colors hover:bg-pdw-copper-hover"
-          >
-            Shop All Products
-          </a>
-          <a
-            href="/about"
-            class="border border-pdw-border px-6 py-3 font-display text-sm uppercase tracking-wide text-pdw-cream transition-colors hover:border-pdw-copper hover:text-pdw-copper"
-          >
-            Our Story
-          </a>
-        </div>
-      </div>
-      <div class="relative">
-        <img
-          src="/images/hero/raider-x-hero.jpg"
-          alt="Peak Defense Works chassis system"
-          class="w-full border border-pdw-border object-cover"
-        />
+  <section class="relative flex min-h-[560px] items-center overflow-hidden bg-pdw-dark">
+    <img
+      src="/images/stock/range-hero.jpg"
+      alt="Shooter at the range"
+      class="absolute inset-0 h-full w-full object-cover opacity-45"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-pdw-dark via-pdw-dark/80 to-transparent"></div>
+    <div class="relative mx-auto max-w-7xl px-6 py-20 lg:px-10">
+      <p class="font-display text-sm uppercase tracking-[0.25em] text-pdw-tan">The Budget MP7</p>
+      <h1 class="mt-4 max-w-xl font-display text-4xl font-bold uppercase leading-tight text-pdw-white sm:text-5xl">
+        TX22 Mountain Chassis <span class="text-pdw-tan">+ FRT</span>
+      </h1>
+      <p class="mt-6 max-w-lg text-pdw-white/80">
+        A folding brace chassis and forced-reset trigger built for the Taurus TX22. Peak Defense Works designs
+        and 3D prints every chassis in central Utah, from the flagship build to the small parts around it.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a
+          href="/shop"
+          class="border border-pdw-tan bg-pdw-tan px-6 py-3 font-display text-sm uppercase tracking-wide text-pdw-ink transition-colors hover:bg-pdw-tan-dark"
+        >
+          Shop All Products
+        </a>
+        <a
+          href="/about"
+          class="border border-pdw-white/40 px-6 py-3 font-display text-sm uppercase tracking-wide text-pdw-white transition-colors hover:border-pdw-tan hover:text-pdw-tan"
+        >
+          Our Story
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- Category tiles -->
+  <!-- Category triptych -->
   <section class="mx-auto max-w-7xl px-6 py-16 lg:px-10">
-    <h2 class="font-display text-2xl font-bold uppercase tracking-wide text-pdw-cream">Shop by Category</h2>
+    <h2 class="font-display text-2xl font-bold uppercase tracking-wide text-pdw-ink">Shop by Category</h2>
     <div class="mt-8 grid gap-4 sm:grid-cols-3">
-      <a href="/shop#chassis" class="group relative flex h-56 items-end overflow-hidden border border-pdw-border">
-        <img src="/images/products/tx7-mtn2-chassis.jpg" alt="Chassis systems" class="absolute inset-0 h-full w-full object-cover opacity-60 transition-opacity group-hover:opacity-80" />
-        <div class="absolute inset-0 bg-gradient-to-t from-pdw-black via-pdw-black/20 to-transparent"></div>
-        <p class="relative z-10 p-5 font-display text-xl uppercase tracking-wide text-pdw-cream">Chassis Systems</p>
+      <a href="/shop#chassis-rifle-kits" class="group relative flex h-64 items-end overflow-hidden">
+        <img src="/images/products/tx7-mtn2-chassis.jpg" alt="Chassis &amp; rifle kits" class="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
+        <div class="absolute inset-0 bg-gradient-to-t from-pdw-ink/80 via-pdw-ink/10 to-transparent"></div>
+        <p class="relative z-10 p-5 font-display text-xl uppercase tracking-wide text-pdw-white">Chassis &amp; Rifle Kits</p>
       </a>
-      <a href="/shop#accessories" class="group relative flex h-56 items-end overflow-hidden border border-pdw-border">
-        <img src="/images/products/antimatter-optic-rail.jpg" alt="Accessories" class="absolute inset-0 h-full w-full object-cover opacity-60 transition-opacity group-hover:opacity-80" />
-        <div class="absolute inset-0 bg-gradient-to-t from-pdw-black via-pdw-black/20 to-transparent"></div>
-        <p class="relative z-10 p-5 font-display text-xl uppercase tracking-wide text-pdw-cream">Accessories</p>
+      <a href="/shop#holsters-carry" class="group relative flex h-64 items-end overflow-hidden">
+        <img src="/images/stock/desert-range.jpg" alt="Holsters &amp; carry" class="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
+        <div class="absolute inset-0 bg-gradient-to-t from-pdw-ink/80 via-pdw-ink/10 to-transparent"></div>
+        <p class="relative z-10 p-5 font-display text-xl uppercase tracking-wide text-pdw-white">Holsters &amp; Carry</p>
       </a>
-      <a href="/shop#soft-goods" class="group relative flex h-56 items-end overflow-hidden border border-pdw-border">
-        <img src="/images/products/snakestaff-mag-pouch-quad.jpg" alt="Soft goods" class="absolute inset-0 h-full w-full object-cover opacity-60 transition-opacity group-hover:opacity-80" />
-        <div class="absolute inset-0 bg-gradient-to-t from-pdw-black via-pdw-black/20 to-transparent"></div>
-        <p class="relative z-10 p-5 font-display text-xl uppercase tracking-wide text-pdw-cream">Soft Goods</p>
+      <a href="/shop#parts-accessories" class="group relative flex h-64 items-end overflow-hidden">
+        <img src="/images/products/antimatter-optic-rail.jpg" alt="Parts &amp; accessories" class="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
+        <div class="absolute inset-0 bg-gradient-to-t from-pdw-ink/80 via-pdw-ink/10 to-transparent"></div>
+        <p class="relative z-10 p-5 font-display text-xl uppercase tracking-wide text-pdw-white">Parts &amp; Accessories</p>
       </a>
     </div>
   </section>
 
-  <!-- Featured -->
-  <section class="border-y border-pdw-border bg-pdw-charcoal">
+  <!-- Bestsellers -->
+  <section class="bg-pdw-offwhite">
     <div class="mx-auto max-w-7xl px-6 py-16 lg:px-10">
-      <h2 class="font-display text-2xl font-bold uppercase tracking-wide text-pdw-cream">Flagship Builds</h2>
+      <div class="flex items-end justify-between">
+        <div>
+          <p class="font-display text-sm uppercase tracking-[0.2em] text-pdw-tan-dark">Flagship Builds</p>
+          <h2 class="mt-1 font-display text-2xl font-bold uppercase tracking-wide text-pdw-ink">Bestsellers</h2>
+        </div>
+        <a href="/shop" class="hidden font-display text-sm uppercase tracking-wide text-pdw-tan-dark hover:text-pdw-ink sm:block">View All &rarr;</a>
+      </div>
       <div class="mt-8 grid gap-6 sm:grid-cols-2">
         {featured.map((product) => <ProductCard product={product} />)}
       </div>
     </div>
   </section>
 
+  <!-- Split content: made in Utah -->
+  <section class="mx-auto max-w-7xl px-6 py-16 lg:px-10">
+    <div class="grid items-center gap-10 lg:grid-cols-2">
+      <div>
+        <p class="font-display text-sm uppercase tracking-[0.2em] text-pdw-tan-dark">How It's Built</p>
+        <h2 class="mt-2 font-display text-3xl font-bold uppercase leading-tight text-pdw-ink">
+          3D Printed. Precision Machined. Utah Made.
+        </h2>
+        <p class="mt-4 text-pdw-body">
+          Every chassis starts as a CAD file and ends on a shooter's TX22. We run our own print floor in central
+          Utah, so the part that ships is the part we designed and tested ourselves, not a contract overseas run.
+        </p>
+        <p class="mt-4 text-pdw-body">
+          Sam owns the product and the IP outright. No investors, no shortcuts on fit or finish.
+        </p>
+        <a
+          href="/about"
+          class="mt-6 inline-block border border-pdw-tan px-6 py-3 font-display text-sm uppercase tracking-wide text-pdw-ink transition-colors hover:bg-pdw-tan"
+        >
+          Read Our Story
+        </a>
+      </div>
+      <div class="relative h-80 overflow-hidden lg:h-96">
+        <img src="/images/products/tx7-mtn2-chassis.jpg" alt="TX22 chassis system" class="h-full w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Promo banner -->
+  <section class="relative flex min-h-[360px] items-center overflow-hidden bg-pdw-dark">
+    <img src="/images/stock/desert-range.jpg" alt="Range in the Utah desert" class="absolute inset-0 h-full w-full object-cover opacity-40" />
+    <div class="absolute inset-0 bg-gradient-to-t from-pdw-dark via-pdw-dark/70 to-pdw-dark/30"></div>
+    <div class="relative mx-auto max-w-7xl px-6 py-16 text-center lg:px-10">
+      <p class="font-display text-sm uppercase tracking-[0.25em] text-pdw-tan">First to Market</p>
+      <h2 class="mt-3 font-display text-3xl font-bold uppercase text-pdw-white sm:text-4xl">
+        The First MP7-Style Build for the TX22
+      </h2>
+      <p class="mx-auto mt-4 max-w-xl text-pdw-white/80">
+        Thousands shipped since launch. Built and range-tested in Utah, not just rendered in CAD.
+      </p>
+      <a
+        href="/shop"
+        class="mt-6 inline-block border border-pdw-tan bg-pdw-tan px-6 py-3 font-display text-sm uppercase tracking-wide text-pdw-ink transition-colors hover:bg-pdw-tan-dark"
+      >
+        Shop the Chassis
+      </a>
+    </div>
+  </section>
+
   <!-- New products -->
   <section class="mx-auto max-w-7xl px-6 py-16 lg:px-10">
     <div class="flex items-center justify-between">
-      <h2 class="font-display text-2xl font-bold uppercase tracking-wide text-pdw-cream">New &amp; Notable</h2>
-      <a href="/shop" class="font-display text-sm uppercase tracking-wide text-pdw-copper hover:text-pdw-cream">View All &rarr;</a>
+      <h2 class="font-display text-2xl font-bold uppercase tracking-wide text-pdw-ink">New &amp; Notable</h2>
+      <a href="/shop" class="font-display text-sm uppercase tracking-wide text-pdw-tan-dark hover:text-pdw-ink">View All &rarr;</a>
     </div>
     <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {newest.map((product) => <ProductCard product={product} />)}
     </div>
   </section>
 
-  <!-- Mission strip -->
-  <section class="border-t border-pdw-border bg-pdw-charcoal">
-    <div class="mx-auto grid max-w-7xl gap-8 px-6 py-14 lg:grid-cols-3 lg:px-10">
-      <div>
-        <p class="font-display text-lg uppercase tracking-wide text-pdw-copper">Designed &amp; Built in Utah</p>
-        <p class="mt-2 text-sm text-pdw-muted">Every chassis is designed, machined, and quality-checked in-house before it ships.</p>
+  <!-- Why buy from us -->
+  <section class="border-y border-pdw-border bg-pdw-offwhite">
+    <div class="mx-auto grid max-w-7xl gap-8 px-6 py-14 sm:grid-cols-2 lg:grid-cols-4 lg:px-10">
+      <div class="text-center">
+        <p class="font-display text-lg uppercase tracking-wide text-pdw-tan-dark">Owner-Operated</p>
+        <p class="mt-2 text-sm text-pdw-body">No investors, no compromises. Sam owns the product and IP outright.</p>
       </div>
-      <div>
-        <p class="font-display text-lg uppercase tracking-wide text-pdw-copper">Owner-Operated</p>
-        <p class="mt-2 text-sm text-pdw-muted">No investors, no compromises. Sam owns the product and the IP outright.</p>
+      <div class="text-center">
+        <p class="font-display text-lg uppercase tracking-wide text-pdw-tan-dark">Utah Made</p>
+        <p class="mt-2 text-sm text-pdw-body">Designed, printed, and quality-checked in-house before it ships.</p>
       </div>
-      <div>
-        <p class="font-display text-lg uppercase tracking-wide text-pdw-copper">Built for the Range</p>
-        <p class="mt-2 text-sm text-pdw-muted">Every design is tested under real recoil before it becomes a product.</p>
+      <div class="text-center">
+        <p class="font-display text-lg uppercase tracking-wide text-pdw-tan-dark">Range Tested</p>
+        <p class="mt-2 text-sm text-pdw-body">Every design is run under real recoil before it becomes a product.</p>
+      </div>
+      <div class="text-center">
+        <p class="font-display text-lg uppercase tracking-wide text-pdw-tan-dark">Direct Support</p>
+        <p class="mt-2 text-sm text-pdw-body">Questions about fit or orders go straight to the team, not a call center.</p>
       </div>
     </div>
   </section>
