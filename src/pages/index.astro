@@ -1,17 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ProductCard from "../components/ProductCard.astro";
-import { products, useCases, useCaseImages } from "../data/products";
+import { products } from "../data/products";
 
-const featured = products.filter((p) => p.featured);
 const newest = products.slice(0, 8);
-const shopUseCases = useCases.filter((u) => u !== "All");
-const useCaseSlug = (label: string) => label.toLowerCase().replace(/\s+/g, "-");
-const useCaseCopy: Record<string, string> = {
-  Tactical: "Chassis builds, grips, and parts for range and home defense setups.",
-  Competition: "Precision rail systems, magwells, and triggers built for speed.",
-  "Concealed Carry": "Holsters and compact carry gear for chassis-equipped pistols.",
-};
 ---
 
 <Layout title="Home">
@@ -66,67 +58,37 @@ const useCaseCopy: Record<string, string> = {
     </div>
   </section>
 
-  <!-- Shop by use case -->
-  <section class="bg-pdw-offwhite">
-    <div class="mx-auto max-w-7xl px-6 py-16 lg:px-10">
-      <p class="font-display text-sm uppercase tracking-[0.2em] text-pdw-tan-dark">Built for How You Shoot</p>
-      <h2 class="mt-1 font-display text-2xl font-bold uppercase tracking-wide text-pdw-ink">Shop by Use Case</h2>
-      <div class="mt-8 grid gap-4 sm:grid-cols-3">
-        {shopUseCases.map((useCase) => (
-          <a href={`/shop#${useCaseSlug(useCase)}`} class="group relative flex h-64 items-end overflow-hidden">
-            <img
-              src={useCaseImages[useCase]}
-              alt={useCase}
-              class="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-pdw-ink/85 via-pdw-ink/20 to-transparent"></div>
-            <div class="relative z-10 p-5">
-              <p class="font-display text-xl uppercase tracking-wide text-pdw-white">{useCase}</p>
-              <p class="mt-1 text-sm text-pdw-white/75">{useCaseCopy[useCase]}</p>
-            </div>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Bestsellers -->
-  <section class="bg-pdw-white">
-    <div class="mx-auto max-w-7xl px-6 py-16 lg:px-10">
-      <div class="flex items-end justify-between">
-        <div>
-          <p class="font-display text-sm uppercase tracking-[0.2em] text-pdw-tan-dark">Flagship Builds</p>
-          <h2 class="mt-1 font-display text-2xl font-bold uppercase tracking-wide text-pdw-ink">Bestsellers</h2>
-        </div>
-        <a href="/shop" class="hidden font-display text-sm uppercase tracking-wide text-pdw-tan-dark hover:text-pdw-ink sm:block">View All &rarr;</a>
-      </div>
-      <div class="mt-8 grid gap-6 sm:grid-cols-2">
-        {featured.map((product) => <ProductCard product={product} />)}
-      </div>
-    </div>
-  </section>
-
-  <!-- Split content: made in Utah -->
+  <!-- Our Best Seller -->
   <section class="mx-auto max-w-7xl px-6 py-16 lg:px-10">
     <div class="grid items-center gap-10 lg:grid-cols-2">
       <div>
-        <p class="font-display text-sm uppercase tracking-[0.2em] text-pdw-tan-dark">How It's Built</p>
+        <p class="font-display text-sm uppercase tracking-[0.2em] text-pdw-tan-dark">Our Best Seller</p>
         <h2 class="mt-2 font-display text-3xl font-bold uppercase leading-tight text-pdw-ink">
-          3D Printed. Precision Machined. Utah Made.
+          TX22 Mountain Chassis + FRT
         </h2>
+        <p class="mt-4 font-display text-2xl text-pdw-tan-dark">$149.99</p>
         <p class="mt-4 text-pdw-body">
-          Every chassis starts as a CAD file and ends on a shooter's TX22. We run our own print floor in central
-          Utah, so the part that ships is the part we designed and tested ourselves, not a contract overseas run.
+          Our flagship build. A folding brace chassis with forced-reset trigger for the Taurus TX22, built to turn
+          a $300 pistol into a compact range machine. Thousands shipped since launch.
         </p>
         <p class="mt-4 text-pdw-body">
-          Sam owns the product and the IP outright. No investors, no shortcuts on fit or finish.
+          Every chassis starts as a CAD file and ends on a shooter's TX22. Designed, 3D printed, and range-tested
+          in central Utah, not a contract overseas run.
         </p>
-        <a
-          href="/about"
-          class="mt-6 inline-block border border-pdw-tan px-6 py-3 font-display text-sm uppercase tracking-wide text-pdw-ink transition-colors hover:bg-pdw-tan"
-        >
-          Read Our Story
-        </a>
+        <div class="mt-6 flex flex-wrap gap-4">
+          <a
+            href="/shop#chassis-rifle-kits"
+            class="inline-block border border-pdw-tan bg-pdw-tan px-6 py-3 font-display text-sm uppercase tracking-wide text-pdw-ink transition-colors hover:bg-pdw-tan-dark"
+          >
+            View Product
+          </a>
+          <a
+            href="/about"
+            class="inline-block border border-pdw-tan px-6 py-3 font-display text-sm uppercase tracking-wide text-pdw-ink transition-colors hover:bg-pdw-tan"
+          >
+            Read Our Story
+          </a>
+        </div>
       </div>
       <div class="relative h-80 overflow-hidden lg:h-96">
         <img src="/images/products/tx7-mtn2-chassis.jpg" alt="TX22 chassis system" class="h-full w-full object-cover" />
