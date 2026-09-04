@@ -1,0 +1,119 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const sectionHeading = "font-display text-xl font-bold uppercase tracking-wide text-pdw-ink border-b-2 border-pdw-tan pb-2 inline-block";
+const body = "mt-4 text-sm text-pdw-body";
+const list = "mt-4 list-disc space-y-2 pl-5 text-sm text-pdw-body";
+const link = "text-pdw-tan-dark underline hover:text-pdw-ink";
+---
+
+<Layout title="Terms and Conditions" description="Terms and conditions for using the Peak Defense Works website and ordering products.">
+  <section class="relative overflow-hidden bg-pdw-dark">
+    <img
+      src="/images/stock/desert-range.jpg"
+      alt="Range in the Utah desert"
+      class="absolute inset-0 h-full w-full object-cover opacity-40"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-pdw-dark via-pdw-dark/80 to-pdw-dark/50"></div>
+    <div class="relative mx-auto max-w-7xl px-6 py-16 lg:px-10">
+      <p class="font-display text-sm uppercase tracking-[0.2em] text-pdw-tan">Legal</p>
+      <h1 class="mt-2 font-display text-3xl font-bold uppercase text-pdw-white sm:text-4xl">Terms and Conditions</h1>
+      <p class="mt-3 text-sm text-pdw-white/70">Last updated: September 2026</p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-3xl px-6 py-16 lg:px-10">
+    <div class="flex flex-col gap-12">
+      <div>
+        <h2 class={sectionHeading}>Overview</h2>
+        <p class={body}>
+          These terms govern your use of this website and any order placed with Peak Defense Works, based in
+          Central Utah. By using this site or placing an order, you accept these terms. See also our
+          <a class={link} href="/privacy-policy">Privacy Policy</a>.
+        </p>
+      </div>
+
+      <div>
+        <h2 class={sectionHeading}>Products and Availability</h2>
+        <p class={body}>
+          Peak Defense Works designs and 3D prints chassis systems and accessories for the Taurus TX22 in Central
+          Utah. This storefront is currently a demo in progress &mdash; our full catalog and checkout are still
+          being built out, so pricing, availability, and product details on this site may change without notice
+          until ordering goes live.
+        </p>
+      </div>
+
+      <div>
+        <h2 class={sectionHeading}>Orders and Payment</h2>
+        <p class={body}>
+          Once checkout is live, orders will be processed through a secure third-party payment processor. We do
+          not store your full payment card information on our servers. Orders are not confirmed until payment is
+          successfully processed.
+        </p>
+      </div>
+
+      <div>
+        <h2 class={sectionHeading}>Shipping and Returns</h2>
+        <ul class={list}>
+          <li>Flat-rate shipping to the lower 48 states, calculated at checkout.</li>
+          <li>Most orders leave the shop within 4 to 6 business days.</li>
+          <li>Order issues or return requests are handled directly by email &mdash; contact us and we'll work with you.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class={sectionHeading}>Product Use and Legal Compliance</h2>
+        <p class={body}>
+          Peak Defense Works sells chassis systems, braces, and accessories &mdash; we do not sell firearms.
+          Products are sold for lawful use only. It is your responsibility to know and follow all federal, state,
+          and local laws that apply to firearm accessories, pistol braces, and any resulting configuration in
+          your jurisdiction before you buy or install a product. We reserve the right to refuse or cancel any
+          order where we believe the product cannot be lawfully possessed or used.
+        </p>
+      </div>
+
+      <div>
+        <h2 class={sectionHeading}>Site Content and Intellectual Property</h2>
+        <p class={body}>
+          All website content, product photos, and branding belong to Peak Defense Works and may not be reused
+          without permission.
+        </p>
+      </div>
+
+      <div>
+        <h2 class={sectionHeading}>Limitation of Liability</h2>
+        <p class={body}>
+          To the extent permitted by law, our total liability for any claim related to a product or order is
+          limited to the amount you paid for that order, and we are not liable for indirect or consequential
+          damages. Nothing in these terms limits liability that cannot be limited under Utah law.
+        </p>
+      </div>
+
+      <div>
+        <h2 class={sectionHeading}>Governing Law and Disputes</h2>
+        <p class={body}>
+          These terms are governed by the laws of the State of Utah. Any dispute will be resolved in the courts
+          of Utah, after a good-faith attempt to resolve it directly with us first.
+        </p>
+      </div>
+
+      <div>
+        <h2 class={sectionHeading}>Changes to These Terms</h2>
+        <p class={body}>
+          We may update these terms as the site and storefront develop, especially once checkout goes live. Any
+          changes will be posted on this page with an updated date at the top.
+        </p>
+      </div>
+
+      <div>
+        <h2 class={sectionHeading}>Contact</h2>
+        <p class={body}>If you have questions about these terms, reach out at:</p>
+        <ul class="mt-4 space-y-2 text-sm text-pdw-body">
+          <li><strong>Email:</strong> <a class={link} href="mailto:support@peakdefenseworks.com">support@peakdefenseworks.com</a></li>
+          <li><strong>Location:</strong> Central Utah</li>
+        </ul>
+        <p class={body}>See also our <a class={link} href="/privacy-policy">Privacy Policy</a>.</p>
+      </div>
+    </div>
+  </section>
+</Layout>
