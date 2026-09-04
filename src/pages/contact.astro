@@ -3,10 +3,16 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Contact">
-  <section class="border-b border-pdw-border bg-pdw-offwhite">
-    <div class="mx-auto max-w-7xl px-6 py-16 lg:px-10">
-      <p class="font-display text-sm uppercase tracking-[0.2em] text-pdw-tan-dark">Get in Touch</p>
-      <h1 class="mt-2 font-display text-3xl font-bold uppercase text-pdw-ink sm:text-4xl">Contact Peak Defense Works</h1>
+  <section class="relative overflow-hidden bg-pdw-dark">
+    <img
+      src="/images/stock/desert-range.jpg"
+      alt="Range in the Utah desert"
+      class="absolute inset-0 h-full w-full object-cover opacity-40"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-pdw-dark via-pdw-dark/80 to-pdw-dark/50"></div>
+    <div class="relative mx-auto max-w-7xl px-6 py-16 lg:px-10">
+      <p class="font-display text-sm uppercase tracking-[0.2em] text-pdw-tan">Get in Touch</p>
+      <h1 class="mt-2 font-display text-3xl font-bold uppercase text-pdw-white sm:text-4xl">Contact Peak Defense Works</h1>
     </div>
   </section>
 
