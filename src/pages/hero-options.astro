@@ -1,0 +1,106 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Hero Options (Preview)">
+  <div class="border-b border-pdw-border bg-pdw-offwhite px-6 py-4 text-center">
+    <p class="font-display text-xs uppercase tracking-widest text-pdw-muted">
+      Internal preview only &mdash; three hero directions, not linked from the site nav
+    </p>
+  </div>
+
+  <!-- OPTION 1: Bottom-Left Card -->
+  <section class="relative flex min-h-[640px] items-end overflow-hidden bg-pdw-dark">
+    <span class="absolute right-6 top-6 z-10 border border-pdw-tan/60 bg-pdw-dark/80 px-3 py-1 font-display text-xs uppercase tracking-widest text-pdw-tan">
+      Option 1 &middot; Bottom-Left Card
+    </span>
+    <img
+      src="/images/stock/tp-slider-hero.jpg"
+      alt="Shooter posted up on a precision rifle"
+      class="absolute inset-0 h-full w-full object-cover object-[68%_30%]"
+    />
+    <div class="relative mx-auto w-full max-w-7xl px-6 pb-10 pt-10 lg:px-10">
+      <div class="max-w-lg border border-pdw-tan/30 bg-pdw-dark/75 p-6 backdrop-blur-sm sm:p-8">
+        <p class="font-display text-sm uppercase tracking-[0.25em] text-pdw-tan">Built for New Shooters</p>
+        <h1 class="mt-3 font-display text-3xl font-bold uppercase leading-tight text-pdw-white sm:text-5xl">
+          The $300 Pistol <span class="text-pdw-tan">That Shoots Like $3,000</span>
+        </h1>
+        <p class="mt-4 text-sm text-pdw-white/85 sm:text-base">
+          Peak Defense Works turns an affordable Taurus TX22 into a serious range build. Get the extreme shooting
+          experience, folding brace and all, without the extreme price tag.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-4">
+          <a href="/shop" class="border border-pdw-tan bg-pdw-tan px-6 py-3 font-display text-sm uppercase tracking-wide text-pdw-ink transition-colors hover:bg-pdw-tan-dark">
+            Shop All Products
+          </a>
+          <a href="/about" class="border border-pdw-white/50 px-6 py-3 font-display text-sm uppercase tracking-wide text-pdw-white transition-colors hover:border-pdw-tan hover:text-pdw-tan">
+            Our Story
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPTION 2: Right-Side Card -->
+  <section class="relative flex min-h-[640px] items-center overflow-hidden bg-pdw-dark">
+    <span class="absolute left-6 top-6 z-10 border border-pdw-tan/60 bg-pdw-dark/80 px-3 py-1 font-display text-xs uppercase tracking-widest text-pdw-tan">
+      Option 2 &middot; Right-Side Card
+    </span>
+    <img
+      src="/images/stock/breach-hallway-hero.jpg"
+      alt="Team moving through a cleared building"
+      class="absolute inset-0 h-full w-full object-cover object-[32%_50%]"
+    />
+    <div class="relative ml-auto w-full max-w-md px-6 py-16 lg:px-10">
+      <div class="border border-pdw-tan/30 bg-pdw-dark/75 p-6 backdrop-blur-sm sm:p-8">
+        <p class="font-display text-sm uppercase tracking-[0.25em] text-pdw-tan">Built for New Shooters</p>
+        <h1 class="mt-3 font-display text-3xl font-bold uppercase leading-tight text-pdw-white sm:text-4xl">
+          Move Like a Pro. <span class="text-pdw-tan">Pay Like a Beginner.</span>
+        </h1>
+        <p class="mt-4 text-sm text-pdw-white/85 sm:text-base">
+          A folding brace chassis and forced-reset trigger built for the Taurus TX22 &mdash; the extreme shooting
+          experience without the extreme price tag.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-4">
+          <a href="/shop" class="border border-pdw-tan bg-pdw-tan px-6 py-3 font-display text-sm uppercase tracking-wide text-pdw-ink transition-colors hover:bg-pdw-tan-dark">
+            Shop All Products
+          </a>
+          <a href="/about" class="border border-pdw-white/50 px-6 py-3 font-display text-sm uppercase tracking-wide text-pdw-white transition-colors hover:border-pdw-tan hover:text-pdw-tan">
+            Our Story
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPTION 3: Top-Center Card -->
+  <section class="relative flex min-h-[640px] flex-col justify-start overflow-hidden bg-pdw-dark">
+    <span class="absolute right-6 top-6 z-10 border border-pdw-tan/60 bg-pdw-dark/80 px-3 py-1 font-display text-xs uppercase tracking-widest text-pdw-tan">
+      Option 3 &middot; Top-Center Card
+    </span>
+    <img
+      src="/images/stock/desert-squad-hero.jpg"
+      alt="Shooter moving through the desert"
+      class="absolute inset-0 h-full w-full object-cover object-[50%_100%]"
+    />
+    <div class="relative mx-auto w-full max-w-7xl px-6 pb-10 pt-6 lg:px-10">
+      <div class="mx-auto max-w-2xl border border-pdw-tan/30 bg-pdw-dark/75 p-6 text-center backdrop-blur-sm sm:p-10">
+        <p class="font-display text-sm uppercase tracking-[0.25em] text-pdw-tan">Built for New Shooters</p>
+        <h1 class="mt-3 font-display text-3xl font-bold uppercase leading-tight text-pdw-white sm:text-5xl">
+          Extreme Range Days. <span class="text-pdw-tan">Beginner Budget.</span>
+        </h1>
+        <p class="mt-4 text-sm text-pdw-white/85 sm:text-base">
+          Peak Defense Works turns an affordable Taurus TX22 into a serious range build &mdash; folding brace and all.
+        </p>
+        <div class="mt-6 flex flex-wrap justify-center gap-4">
+          <a href="/shop" class="border border-pdw-tan bg-pdw-tan px-6 py-3 font-display text-sm uppercase tracking-wide text-pdw-ink transition-colors hover:bg-pdw-tan-dark">
+            Shop All Products
+          </a>
+          <a href="/about" class="border border-pdw-white/50 px-6 py-3 font-display text-sm uppercase tracking-wide text-pdw-white transition-colors hover:border-pdw-tan hover:text-pdw-tan">
+            Our Story
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
