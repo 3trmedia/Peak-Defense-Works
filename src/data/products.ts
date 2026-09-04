@@ -30,7 +30,7 @@ export const products: Product[] = [
     price: 179.99,
     category: "Chassis & Rifle Kits",
     useCase: "Competition",
-    image: "/images/products/antimatter-optic-rail.jpg",
+    image: "/images/products/precision-rifle-chassis.png",
     blurb: "Full-length chassis for shooters who want a dedicated rimfire precision platform, not just a pistol brace. Built for a long rail and real glass.",
     featured: true,
   },
@@ -40,6 +40,7 @@ export const products: Product[] = [
     price: 54.99,
     category: "Holsters & Carry",
     useCase: "Concealed Carry",
+    image: "/images/products/flux-iwb-holster.webp",
     blurb: "Inside-the-waistband carry built for chassis-equipped pistols. Sourced through our Flux Defense partnership.",
   },
   {
@@ -48,6 +49,7 @@ export const products: Product[] = [
     price: 59.99,
     category: "Holsters & Carry",
     useCase: "Concealed Carry",
+    image: "/images/products/flux-owb-holster.webp",
     blurb: "Outside-the-waistband retention holster for range and competition use. Same Flux Defense build quality, open carry fit.",
   },
   {
@@ -75,7 +77,7 @@ export const products: Product[] = [
     price: 23.99,
     category: "Parts & Accessories",
     useCase: "Competition",
-    image: "https://peakdefenseworks.com/cdn/shop/files/222A9318.jpg?v=1778576419&width=1200",
+    image: "/images/products/flared-magwell.webp",
     blurb: "Flared magwell for faster reloads under pressure. Drops straight into the factory TX22 frame, no fitting required.",
   },
   {
@@ -84,7 +86,7 @@ export const products: Product[] = [
     price: 19.99,
     category: "Parts & Accessories",
     useCase: "Tactical",
-    image: "/images/products/foregrip-cad.jpg",
+    image: "/images/products/vertical-foregrip.webp",
     blurb: "Lightweight foregrip printed in-house on the same production line as our chassis systems. Multiple color options.",
   },
   {
@@ -93,7 +95,7 @@ export const products: Product[] = [
     price: 17.99,
     category: "Parts & Accessories",
     useCase: "Tactical",
-    image: "/images/products/handgrip-detail.jpg",
+    image: "/images/products/hand-grip.png",
     blurb: "Drop-in replacement grip panel for a more aggressive texture and better control under recoil.",
   },
   {
