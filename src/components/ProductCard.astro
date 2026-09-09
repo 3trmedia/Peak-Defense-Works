@@ -58,13 +58,20 @@ const badgeClasses =
       </div>
       <span
         class:list={[
-          "font-display text-xs uppercase tracking-wide px-3 py-2 transition-colors",
+          "whitespace-nowrap font-display text-xs uppercase tracking-wide px-3 py-2 transition-colors",
           product.status === "coming-soon"
             ? "cursor-not-allowed border border-pdw-border text-pdw-muted"
             : "border border-pdw-tan text-pdw-ink group-hover:bg-pdw-tan group-hover:text-pdw-ink",
         ]}
       >
-        {product.status === "coming-soon" ? "Notify Me" : "View Product"}
+        {product.status === "coming-soon" ? (
+          "Notify"
+        ) : (
+          <>
+            <span class="sm:hidden">View</span>
+            <span class="hidden sm:inline">View Product</span>
+          </>
+        )}
       </span>
     </div>
   </div>

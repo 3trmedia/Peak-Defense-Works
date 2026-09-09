@@ -3,7 +3,7 @@ const year = new Date().getFullYear();
 ---
 
 <section class="border-t border-pdw-dark-surface bg-pdw-dark">
-  <div class="mx-auto max-w-5xl px-6 py-16 text-center lg:px-10">
+  <div class="mx-auto max-w-5xl px-6 py-12 text-center sm:py-16 lg:px-10">
     <p class="font-display text-sm uppercase tracking-[0.2em] text-pdw-tan">Stay in the Loop</p>
     <h2 class="mt-3 font-display text-2xl font-bold uppercase text-pdw-white sm:text-3xl">Sign Up for New Product Drops</h2>
     <p class="mt-3 text-sm text-pdw-muted">Be first to know when the next chassis, finish, or accessory ships.</p>
@@ -25,9 +25,9 @@ const year = new Date().getFullYear();
 </section>
 
 <footer class="bg-pdw-dark">
-  <div class="mx-auto max-w-7xl px-6 py-14 lg:px-10">
-    <div class="grid gap-10 border-t border-pdw-dark-surface pt-12 md:grid-cols-4">
-      <div>
+  <div class="mx-auto max-w-7xl px-6 py-10 sm:py-14 lg:px-10">
+    <div class="grid grid-cols-2 gap-x-6 gap-y-8 border-t border-pdw-dark-surface pt-10 md:grid-cols-4 md:gap-10 md:pt-12">
+      <div class="col-span-2 md:col-span-1">
         <p class="font-display text-lg font-bold uppercase tracking-widest text-pdw-white">
           Peak <span class="text-pdw-tan">Defense</span> Works
         </p>
@@ -84,14 +84,14 @@ const year = new Date().getFullYear();
         </ul>
       </div>
 
-      <div>
+      <div class="col-span-2 md:col-span-1">
         <p class="font-display text-sm uppercase tracking-widest text-pdw-white">Based In</p>
         <p class="mt-3 text-sm text-pdw-muted">Central Utah</p>
         <p class="mt-4 text-sm text-pdw-muted">support@peakdefenseworks.com</p>
       </div>
     </div>
 
-    <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-pdw-dark-surface pt-6 text-xs text-pdw-muted md:flex-row">
+    <div class="mt-10 flex flex-col items-center justify-between gap-4 border-t border-pdw-dark-surface pt-6 text-xs text-pdw-muted md:mt-12 md:flex-row">
       <p>&copy; {year} Peak Defense Works. All rights reserved.</p>
       <p>Demo storefront in progress. Built by Blackout Media.</p>
     </div>
