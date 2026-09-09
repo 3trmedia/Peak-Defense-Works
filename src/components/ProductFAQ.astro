@@ -1,0 +1,22 @@
+---
+import { productFaqs } from "../data/faq";
+---
+
+<section class="border-t border-pdw-dark-surface bg-pdw-dark">
+  <div class="mx-auto max-w-4xl px-6 py-16 lg:px-10">
+    <h2 class="font-display text-2xl font-bold uppercase tracking-wide text-pdw-white">Frequently Asked Questions</h2>
+    <div class="mt-8 divide-y divide-pdw-dark-surface border-t border-pdw-dark-surface">
+      {productFaqs.map((faq) => (
+        <details class="group py-5">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-sm uppercase tracking-wide text-pdw-white">
+            {faq.question}
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0 text-pdw-tan transition-transform group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+            </svg>
+          </summary>
+          <p class="mt-3 text-sm text-pdw-muted">{faq.answer}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

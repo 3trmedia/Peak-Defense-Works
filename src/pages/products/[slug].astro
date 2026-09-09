@@ -1,0 +1,205 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ProductCard from "../../components/ProductCard.astro";
+import ProductFAQ from "../../components/ProductFAQ.astro";
+import { products, type Product } from "../../data/products";
+
+export function getStaticPaths() {
+  return products.map((product) => ({
+    params: { slug: product.slug },
+    props: { product },
+  }));
+}
+
+interface Props {
+  product: Product;
+}
+
+const { product } = Astro.props;
+
+// Placeholder gallery: the same photo repeated until real product photography
+// is ready to swap in. Replace each src below with a distinct angle/detail shot.
+const gallery = product.image
+  ? [product.image, product.image, product.image, product.image]
+  : [];
+
+const sameCategory = products.filter((p) => p.slug !== product.slug && p.category === product.category);
+const otherCategory = products.filter((p) => p.slug !== product.slug && p.category !== product.category);
+const youMayAlsoLike = [...sameCategory, ...otherCategory].slice(0, 4);
+
+const descriptionParagraphs = product.description ?? [product.blurb];
+const isAvailable = product.status !== "coming-soon";
+---
+
+<Layout
+  title={`${product.name} | Peak Defense Works`}
+  description={product.blurb}
+  ogImage={product.image}
+>
+  <section class="mx-auto max-w-7xl px-6 py-10 lg:px-10">
+    <nav class="mb-6 text-xs uppercase tracking-wide text-pdw-muted">
+      <a href="/shop" class="hover:text-pdw-tan-dark">Shop</a>
+      <span class="mx-2">/</span>
+      <span class="text-pdw-body">{product.name}</span>
+    </nav>
+
+    <div class="grid gap-10 lg:grid-cols-2">
+      <!-- Gallery -->
+      <div>
+        <div class="relative aspect-square overflow-hidden border border-pdw-border bg-pdw-offwhite">
+          {gallery.length > 0 ? (
+            <img
+              id="gallery-main-image"
+              src={gallery[0]}
+              alt={product.name}
+              class="h-full w-full object-cover"
+            />
+          ) : (
+            <div class="flex h-full w-full flex-col items-center justify-center gap-2 text-pdw-muted">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14M4 8h16M4 4h16v16H4V4z" />
+              </svg>
+              <span class="font-display text-[11px] uppercase tracking-wide">Photo Coming Soon</span>
+            </div>
+          )}
+        </div>
+        {gallery.length > 1 && (
+          <div class="mt-4 grid grid-cols-4 gap-3" id="gallery-thumbs">
+            {gallery.map((src, index) => (
+              <button
+                type="button"
+                class:list={[
+                  "gallery-thumb aspect-square overflow-hidden border-2 transition-colors",
+                  index === 0 ? "border-pdw-tan" : "border-transparent hover:border-pdw-border",
+                ]}
+                data-src={src}
+                aria-label={`View photo ${index + 1} of ${product.name}`}
+              >
+                <img src={src} alt="" class="h-full w-full object-cover" />
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <!-- Details -->
+      <div>
+        <p class="font-display text-xs uppercase tracking-widest text-pdw-tan-dark">{product.category}</p>
+        <h1 class="mt-2 font-display text-3xl font-bold uppercase leading-tight text-pdw-ink sm:text-4xl">
+          {product.name}
+        </h1>
+
+        <div class="mt-4 flex items-baseline gap-3">
+          {product.price > 0 ? (
+            <span class="font-display text-2xl text-pdw-ink">${product.price.toFixed(2)}</span>
+          ) : (
+            <span class="font-display text-lg uppercase tracking-wide text-pdw-muted">Price TBD</span>
+          )}
+          {product.compareAt && (
+            <span class="text-base text-pdw-muted line-through">${product.compareAt.toFixed(2)}</span>
+          )}
+        </div>
+
+        <div class="mt-6 space-y-4 text-sm text-pdw-body">
+          {descriptionParagraphs.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+
+        {product.highlights && (
+          <div class="mt-6">
+            <p class="font-display text-xs uppercase tracking-widest text-pdw-tan-dark">Kit Includes</p>
+            <ul class="mt-3 space-y-2 text-sm text-pdw-body">
+              {product.highlights.map((item) => (
+                <li class="flex items-start gap-2">
+                  <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-pdw-tan-dark"></span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {product.specs && (
+          <dl class="mt-6 space-y-1 border-t border-pdw-border pt-4 text-sm">
+            {product.specs.platform && (
+              <div class="flex gap-2">
+                <dt class="font-display uppercase tracking-wide text-pdw-ink">Platform:</dt>
+                <dd class="text-pdw-body">{product.specs.platform}</dd>
+              </div>
+            )}
+            {product.specs.material && (
+              <div class="flex gap-2">
+                <dt class="font-display uppercase tracking-wide text-pdw-ink">Material:</dt>
+                <dd class="text-pdw-body">{product.specs.material}</dd>
+              </div>
+            )}
+            {product.specs.madeInUsa && (
+              <div class="flex gap-2">
+                <dt class="font-display uppercase tracking-wide text-pdw-ink">Origin:</dt>
+                <dd class="text-pdw-body">Made in the USA</dd>
+              </div>
+            )}
+          </dl>
+        )}
+
+        <div class="mt-8 flex flex-wrap items-center gap-4">
+          <div class="flex items-center border border-pdw-border">
+            <button type="button" class="px-4 py-3 text-pdw-ink hover:bg-pdw-offwhite" aria-label="Decrease quantity">&minus;</button>
+            <span class="w-10 text-center font-display text-sm">1</span>
+            <button type="button" class="px-4 py-3 text-pdw-ink hover:bg-pdw-offwhite" aria-label="Increase quantity">+</button>
+          </div>
+          <button
+            type="button"
+            disabled={!isAvailable}
+            class:list={[
+              "flex-1 border px-6 py-3 font-display text-sm uppercase tracking-wide transition-colors sm:flex-none sm:px-10",
+              isAvailable
+                ? "border-pdw-tan bg-pdw-tan text-pdw-ink hover:bg-pdw-tan-dark"
+                : "cursor-not-allowed border-pdw-border text-pdw-muted",
+            ]}
+          >
+            {isAvailable ? "Add to Cart" : "Notify Me"}
+          </button>
+        </div>
+
+        {product.disclaimer && (
+          <div class="mt-8 border border-pdw-border bg-pdw-offwhite p-4">
+            <p class="font-display text-xs uppercase tracking-widest text-pdw-tan-dark">Disclaimer</p>
+            <p class="mt-2 text-xs leading-relaxed text-pdw-muted">{product.disclaimer}</p>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <ProductFAQ />
+
+  {youMayAlsoLike.length > 0 && (
+    <section class="mx-auto max-w-7xl px-6 py-16 lg:px-10">
+      <h2 class="font-display text-2xl font-bold uppercase tracking-wide text-pdw-ink">You May Also Like</h2>
+      <div class="mt-8 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
+        {youMayAlsoLike.map((item) => <ProductCard product={item} />)}
+      </div>
+    </section>
+  )}
+</Layout>
+
+<script>
+  function initGallery() {
+    const mainImage = document.getElementById("gallery-main-image") as HTMLImageElement | null;
+    const thumbs = document.querySelectorAll<HTMLButtonElement>(".gallery-thumb");
+    if (!mainImage || thumbs.length === 0) return;
+
+    thumbs.forEach((thumb) => {
+      thumb.addEventListener("click", () => {
+        const src = thumb.dataset.src;
+        if (!src) return;
+        mainImage.src = src;
+        thumbs.forEach((t) => t.classList.remove("border-pdw-tan"));
+        thumbs.forEach((t) => t.classList.add("border-transparent"));
+        thumb.classList.remove("border-transparent");
+        thumb.classList.add("border-pdw-tan");
+      });
+    });
+  }
+  initGallery();
+</script>

@@ -11,18 +11,45 @@ export type Product = {
   blurb: string;
   status?: "coming-soon" | "sale";
   featured?: boolean;
+  /** Longer product-page description (falls back to blurb if omitted). */
+  description?: string[];
+  /** "Kit includes" style bullet list shown on the product page. */
+  highlights?: string[];
+  specs?: {
+    platform?: string;
+    material?: string;
+    madeInUsa?: boolean;
+  };
+  disclaimer?: string;
 };
 
 export const products: Product[] = [
   {
     slug: "tx22-mountain-chassis-frt",
     name: "TX22 Mountain Chassis + FRT",
-    price: 149.99,
+    price: 139.99,
     category: "Chassis & Rifle Kits",
     useCase: "Tactical",
     image: "/images/products/tx7-mtn2-chassis.jpg",
     blurb: "Our flagship build. A folding brace chassis with forced-reset trigger for the Taurus TX22, built to turn a $300 pistol into a compact range machine.",
     featured: true,
+    description: [
+      "Buy the Original TX22 MP7 Chassis.",
+      "Transform your Taurus TX22 into an MP7 inspired PDW with the MTN2 Chassis Kit, engineered to deliver unmatched stability and modularity. Designed and built for shooters who demand more control and capability from their rimfire platform, this chassis unlocks a whole new level of fun and functionality.",
+    ],
+    highlights: [
+      "TX-7 MTN 2 Chassis",
+      "Folding Brace",
+      "2 Picatinny Side Rails",
+      "Angled Front Magazine Holder",
+    ],
+    specs: {
+      platform: "TX22",
+      material: "Carbon Fiber Reinforced Polymer (PETG-CF)",
+      madeInUsa: true,
+    },
+    disclaimer:
+      "This is a 3D printed product, made with the best machines and materials, while keeping costs to you the customer as low as possible. 3D printed products often show layer lines, and these tiny lines on 3D printed holsters can accelerate wear on firearm finishes.",
   },
   {
     slug: "precision-rifle-22lr-body-kit",

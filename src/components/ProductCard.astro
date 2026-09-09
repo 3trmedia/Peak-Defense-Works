@@ -15,7 +15,10 @@ const badgeClasses =
     : "bg-pdw-ink/85 text-pdw-white";
 ---
 
-<div class="group flex flex-col border border-pdw-border bg-pdw-white transition-colors hover:border-pdw-tan">
+<a
+  href={`/products/${product.slug}`}
+  class="group flex flex-col border border-pdw-border bg-pdw-white transition-colors hover:border-pdw-tan"
+>
   <div class="relative aspect-square overflow-hidden bg-pdw-offwhite">
     {badgeText && (
       <span class:list={["absolute left-3 top-3 z-10 px-2 py-1 font-display text-[11px] uppercase tracking-wide", badgeClasses]}>
@@ -53,17 +56,16 @@ const badgeClasses =
           <span class="text-sm text-pdw-muted line-through">${product.compareAt.toFixed(2)}</span>
         )}
       </div>
-      <button
-        disabled={product.status === "coming-soon"}
+      <span
         class:list={[
           "font-display text-xs uppercase tracking-wide px-3 py-2 transition-colors",
           product.status === "coming-soon"
             ? "cursor-not-allowed border border-pdw-border text-pdw-muted"
-            : "border border-pdw-tan text-pdw-ink hover:bg-pdw-tan hover:text-pdw-ink",
+            : "border border-pdw-tan text-pdw-ink group-hover:bg-pdw-tan group-hover:text-pdw-ink",
         ]}
       >
-        {product.status === "coming-soon" ? "Notify Me" : "Add to Cart"}
-      </button>
+        {product.status === "coming-soon" ? "Notify Me" : "View Product"}
+      </span>
     </div>
   </div>
-</div>
+</a>
