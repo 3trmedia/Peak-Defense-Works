@@ -12,11 +12,11 @@ const newest = products.slice(0, 8);
   ogImage="/images/hero/raider-x-hero.jpg"
 >
   <!-- Hero -->
-  <section class="relative flex min-h-[640px] items-center overflow-hidden bg-pdw-dark">
+  <section class="relative flex min-h-[420px] items-center overflow-hidden bg-pdw-dark sm:min-h-[520px] lg:min-h-[640px]">
     <img
       src="/images/stock/breach-hallway-hero.jpg"
       alt="Team moving through a cleared building"
-      class="absolute inset-0 h-full w-full scale-125 object-cover object-[72%_45%]"
+      class="absolute inset-0 h-full w-full object-cover object-[63%_40%] sm:object-[72%_45%]"
     />
     <div class="relative mx-auto w-full max-w-7xl px-6 py-10 lg:px-10">
       <div class="max-w-lg border border-pdw-tan/30 bg-pdw-dark/75 p-6 backdrop-blur-sm sm:p-8">
@@ -129,7 +129,7 @@ const newest = products.slice(0, 8);
       <h2 class="font-display text-2xl font-bold uppercase tracking-wide text-pdw-ink">New &amp; Notable</h2>
       <a href="/shop" class="font-display text-sm uppercase tracking-wide text-pdw-tan-dark hover:text-pdw-ink">View All &rarr;</a>
     </div>
-    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="mt-8 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
       {newest.map((product) => <ProductCard product={product} />)}
     </div>
   </section>
