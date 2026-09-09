@@ -37,11 +37,23 @@ const isAvailable = product.status !== "coming-soon";
   ogImage={product.image}
 >
   <section class="mx-auto max-w-7xl px-6 py-10 lg:px-10">
-    <nav class="mb-6 text-xs uppercase tracking-wide text-pdw-muted">
-      <a href="/shop" class="hover:text-pdw-tan-dark">Shop</a>
-      <span class="mx-2">/</span>
-      <span class="text-pdw-body">{product.name}</span>
-    </nav>
+    <div class="mb-4 flex items-center justify-between gap-4">
+      <a
+        href="/shop"
+        id="back-button"
+        class="inline-flex items-center gap-2 py-2 font-display text-sm uppercase tracking-wide text-pdw-ink hover:text-pdw-tan-dark"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+        Back
+      </a>
+      <nav class="hidden text-xs uppercase tracking-wide text-pdw-muted sm:block">
+        <a href="/shop" class="hover:text-pdw-tan-dark">Shop</a>
+        <span class="mx-2">/</span>
+        <span class="text-pdw-body">{product.name}</span>
+      </nav>
+    </div>
 
     <div class="grid gap-10 lg:grid-cols-2">
       <!-- Gallery -->
@@ -202,4 +214,20 @@ const isAvailable = product.status !== "coming-soon";
     });
   }
   initGallery();
+
+  function initBackButton() {
+    const backButton = document.getElementById("back-button");
+    if (!backButton) return;
+    // If the visitor arrived from elsewhere on this site (shop grid, home,
+    // another product's "You May Also Like"), go back to that exact page/
+    // scroll position instead of always landing on /shop.
+    const cameFromSameSite = document.referrer.startsWith(window.location.origin);
+    if (cameFromSameSite && window.history.length > 1) {
+      backButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        window.history.back();
+      });
+    }
+  }
+  initBackButton();
 </script>
