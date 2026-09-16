@@ -60,7 +60,7 @@ const badgeClasses =
       type="button"
       disabled={product.status === "coming-soon"}
       class:list={[
-        "add-to-cart-button whitespace-nowrap font-display text-xs uppercase tracking-wide px-3 py-2 transition-colors",
+        "add-to-cart-button relative isolate overflow-hidden whitespace-nowrap font-display text-xs uppercase tracking-wide px-3 py-2 transition-colors before:absolute before:inset-0 before:z-0 before:origin-left before:scale-x-0 before:bg-pdw-tan before:transition-transform before:duration-500 before:ease-out",
         product.status === "coming-soon"
           ? "cursor-not-allowed border border-pdw-border text-pdw-muted"
           : "border border-pdw-tan text-pdw-ink hover:bg-pdw-tan hover:text-pdw-ink",
@@ -74,8 +74,14 @@ const badgeClasses =
         "Notify"
       ) : (
         <>
-          <span class="sm:hidden">Add</span>
-          <span class="hidden sm:inline">Add to Cart</span>
+          <span class="add-label relative z-10">
+            <span class="sm:hidden">Add</span>
+            <span class="hidden sm:inline">Add to Cart</span>
+          </span>
+          <span class="cart-label relative z-10 hidden">
+            <span class="sm:hidden">Cart</span>
+            <span class="hidden sm:inline">Go to Cart</span>
+          </span>
         </>
       )}
     </button>
@@ -103,7 +109,18 @@ const badgeClasses =
           image: productImage || undefined,
         });
         button.dataset.added = "true";
-        button.textContent = "Go to Cart";
+
+        // Fill animation, then settle into a permanently-filled "Go to Cart" state
+        // so it reads visually different from the outlined "Add to Cart" button.
+        button.classList.remove("before:scale-x-0");
+        button.classList.add("before:scale-x-100");
+
+        setTimeout(() => {
+          button.classList.remove("hover:bg-pdw-tan", "hover:text-pdw-ink");
+          button.classList.add("bg-pdw-tan", "hover:bg-pdw-tan-dark");
+          button.querySelector(".add-label")?.classList.add("hidden");
+          button.querySelector(".cart-label")?.classList.remove("hidden");
+        }, 400);
       });
     });
   }
