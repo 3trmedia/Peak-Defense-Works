@@ -90,6 +90,10 @@ const badgeClasses =
       if (button.dataset.boundAddToCart) return;
       button.dataset.boundAddToCart = "true";
       button.addEventListener("click", () => {
+        if (button.dataset.added === "true") {
+          window.location.href = "/cart";
+          return;
+        }
         const { productSlug, productName, productPrice, productImage } = button.dataset;
         if (!productSlug || !productName) return;
         addToCart({
@@ -98,13 +102,8 @@ const badgeClasses =
           price: Number(productPrice) || 0,
           image: productImage || undefined,
         });
-        const original = button.textContent;
-        button.textContent = "Added!";
-        button.disabled = true;
-        setTimeout(() => {
-          button.textContent = original;
-          button.disabled = false;
-        }, 1200);
+        button.dataset.added = "true";
+        button.textContent = "Go to Cart";
       });
     });
   }

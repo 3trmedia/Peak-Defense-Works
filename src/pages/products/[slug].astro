@@ -225,6 +225,10 @@ const isAvailable = product.status !== "coming-soon";
     if (!button || button.disabled) return;
 
     button.addEventListener("click", () => {
+      if (button.dataset.added === "true") {
+        window.location.href = "/cart";
+        return;
+      }
       const { productSlug, productName, productPrice, productImage } = button.dataset;
       if (!productSlug || !productName) return;
       const qty = Number(valueEl?.textContent) || 1;
@@ -237,13 +241,8 @@ const isAvailable = product.status !== "coming-soon";
         },
         qty
       );
-      const original = button.textContent;
-      button.textContent = "Added to Cart!";
-      button.disabled = true;
-      setTimeout(() => {
-        button.textContent = original;
-        button.disabled = false;
-      }, 1200);
+      button.dataset.added = "true";
+      button.textContent = "Go to Cart";
     });
   }
   initAddToCart();
