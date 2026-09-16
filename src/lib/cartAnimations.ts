@@ -19,6 +19,13 @@ function applyFilledStyle(button: HTMLButtonElement) {
   button.classList.add("bg-pdw-tan", "hover:bg-pdw-tan-dark");
 }
 
+// For buttons that start filled (as if always hovered) — settling into
+// "Go to Cart" means dropping the fill so it reads as outlined instead,
+// rather than changing color on top of an already-filled button.
+function applyOutlineStyle(button: HTMLButtonElement) {
+  button.classList.remove("bg-pdw-tan");
+}
+
 function swapLabelsInstant(button: HTMLButtonElement) {
   const { addLabel, cartLabel } = getLabels(button);
   addLabel?.classList.add("hidden");
@@ -160,7 +167,7 @@ function flip3D(button: HTMLButtonElement) {
     { duration: 420, easing: "ease-in-out" }
   );
   setTimeout(() => {
-    applyFilledStyle(button);
+    applyOutlineStyle(button);
     swapLabelsInstant(button);
   }, 210);
   anim.onfinish = () => {

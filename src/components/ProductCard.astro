@@ -26,6 +26,11 @@ const cartAnimNames: Record<number, string> = {
   7: "7. Shake + Pop",
   8: "8. Outline Sweep",
 };
+
+// Variant 4 test: button starts filled (as if always hovered), grows
+// slightly on hover instead of changing color, then flips to an outlined
+// "Go to Cart" so the state change itself is the signal, not a color swap.
+const startsFilled = cartAnim === 4;
 ---
 
 <div class="group flex flex-col border border-pdw-border bg-pdw-white transition-colors hover:border-pdw-tan">
@@ -81,7 +86,9 @@ const cartAnimNames: Record<number, string> = {
         "add-to-cart-button relative isolate overflow-hidden whitespace-nowrap font-display text-xs uppercase tracking-wide px-3 py-2",
         product.status === "coming-soon"
           ? "cursor-not-allowed border border-pdw-border text-pdw-muted"
-          : "border border-pdw-tan text-pdw-ink hover:bg-pdw-tan hover:text-pdw-ink",
+          : startsFilled
+            ? "border border-pdw-tan bg-pdw-tan text-pdw-ink transition-transform duration-200 hover:scale-105"
+            : "border border-pdw-tan text-pdw-ink hover:bg-pdw-tan hover:text-pdw-ink",
       ]}
       data-product-slug={product.slug}
       data-product-name={product.name}
