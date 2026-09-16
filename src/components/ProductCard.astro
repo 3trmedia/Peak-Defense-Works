@@ -3,9 +3,11 @@ import type { Product } from "../data/products";
 
 interface Props {
   product: Product;
+  /** Which experimental Add-to-Cart animation (1-8) to use, for A/B comparison. Omit for the default. */
+  cartAnim?: number;
 }
 
-const { product } = Astro.props;
+const { product, cartAnim } = Astro.props;
 
 const badgeText = product.status === "coming-soon" ? "In Development" : product.status === "sale" ? "Sale" : null;
 
@@ -13,9 +15,25 @@ const badgeClasses =
   product.status === "sale"
     ? "bg-pdw-tan text-pdw-ink"
     : "bg-pdw-ink/85 text-pdw-white";
+
+const cartAnimNames: Record<number, string> = {
+  1: "1. Fly to Cart",
+  2: "2. Firework Burst",
+  3: "3. Cross-Fade",
+  4: "4. 3D Flip",
+  5: "5. Slide Up",
+  6: "6. Ripple Expand",
+  7: "7. Shake + Pop",
+  8: "8. Outline Sweep",
+};
 ---
 
 <div class="group flex flex-col border border-pdw-border bg-pdw-white transition-colors hover:border-pdw-tan">
+  {cartAnim && (
+    <p class="border-b border-pdw-border bg-pdw-tan-light px-3 py-1.5 text-center font-display text-[10px] uppercase tracking-widest text-pdw-tan-dark">
+      Testing: {cartAnimNames[cartAnim]}
+    </p>
+  )}
   <a href={`/products/${product.slug}`} class="flex flex-1 flex-col">
     <div class="relative aspect-square overflow-hidden bg-pdw-offwhite">
       {badgeText && (
@@ -60,7 +78,7 @@ const badgeClasses =
       type="button"
       disabled={product.status === "coming-soon"}
       class:list={[
-        "add-to-cart-button relative isolate overflow-hidden whitespace-nowrap font-display text-xs uppercase tracking-wide px-3 py-2 transition-colors before:absolute before:inset-0 before:z-0 before:origin-left before:scale-x-0 before:bg-pdw-tan before:transition-transform before:duration-500 before:ease-out",
+        "add-to-cart-button relative isolate overflow-hidden whitespace-nowrap font-display text-xs uppercase tracking-wide px-3 py-2",
         product.status === "coming-soon"
           ? "cursor-not-allowed border border-pdw-border text-pdw-muted"
           : "border border-pdw-tan text-pdw-ink hover:bg-pdw-tan hover:text-pdw-ink",
@@ -69,6 +87,7 @@ const badgeClasses =
       data-product-name={product.name}
       data-product-price={product.price}
       data-product-image={product.image ?? ""}
+      data-cart-anim={cartAnim ?? ""}
     >
       {product.status === "coming-soon" ? (
         "Notify"
@@ -90,6 +109,7 @@ const badgeClasses =
 
 <script>
   import { addToCart } from "../lib/cart";
+  import { cartAnimations } from "../lib/cartAnimations";
 
   function initAddToCartButtons() {
     document.querySelectorAll<HTMLButtonElement>(".add-to-cart-button:not([disabled])").forEach((button) => {
@@ -100,7 +120,7 @@ const badgeClasses =
           window.location.href = "/cart";
           return;
         }
-        const { productSlug, productName, productPrice, productImage } = button.dataset;
+        const { productSlug, productName, productPrice, productImage, cartAnim } = button.dataset;
         if (!productSlug || !productName) return;
         addToCart({
           slug: productSlug,
@@ -110,17 +130,8 @@ const badgeClasses =
         });
         button.dataset.added = "true";
 
-        // Fill animation, then settle into a permanently-filled "Go to Cart" state
-        // so it reads visually different from the outlined "Add to Cart" button.
-        button.classList.remove("before:scale-x-0");
-        button.classList.add("before:scale-x-100");
-
-        setTimeout(() => {
-          button.classList.remove("hover:bg-pdw-tan", "hover:text-pdw-ink");
-          button.classList.add("bg-pdw-tan", "hover:bg-pdw-tan-dark");
-          button.querySelector(".add-label")?.classList.add("hidden");
-          button.querySelector(".cart-label")?.classList.remove("hidden");
-        }, 400);
+        const variant = cartAnimations[Number(cartAnim)] ?? cartAnimations[3];
+        variant(button);
       });
     });
   }

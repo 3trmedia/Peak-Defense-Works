@@ -130,7 +130,7 @@ const newest = products.slice(0, 8);
       <a href="/shop" class="font-display text-sm uppercase tracking-wide text-pdw-tan-dark hover:text-pdw-ink">View All &rarr;</a>
     </div>
     <div class="mt-8 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
-      {newest.map((product) => <ProductCard product={product} />)}
+      {newest.map((product, index) => <ProductCard product={product} cartAnim={index + 1} />)}
     </div>
   </section>
 
