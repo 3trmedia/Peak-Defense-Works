@@ -63,6 +63,16 @@ const searchIndex = products.map((p) => ({
     </nav>
 
     <div class="flex shrink-0 items-center gap-3 sm:gap-4">
+      <button
+        id="mobile-search-button"
+        class="text-pdw-ink hover:text-pdw-tan-dark lg:hidden"
+        aria-label="Search"
+        aria-expanded="false"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0a7 7 0 10-9.9-9.9 7 7 0 009.9 9.9z" />
+        </svg>
+      </button>
       <a href="/cart" class="text-pdw-ink hover:text-pdw-tan-dark" aria-label="Cart">
         <span class="relative inline-block">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
@@ -84,21 +94,23 @@ const searchIndex = products.map((p) => ({
     </div>
   </div>
 
-  <div id="mobile-menu" class="hidden border-t border-pdw-border bg-pdw-white md:hidden">
-    <div class="px-6 pt-4">
-      <div class="site-search-container relative w-full">
-        <input
-          type="search"
-          placeholder="Search products..."
-          autocomplete="off"
-          class="site-search-input w-full border border-pdw-border bg-pdw-offwhite px-4 py-2 pr-10 text-sm text-pdw-ink placeholder:text-pdw-muted focus:border-pdw-tan focus:outline-none"
-        />
-        <svg xmlns="http://www.w3.org/2000/svg" class="pointer-events-none absolute right-3 top-2.5 h-4 w-4 text-pdw-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0a7 7 0 10-9.9-9.9 7 7 0 009.9 9.9z" />
-        </svg>
-        <div class="site-search-results absolute left-0 right-0 top-full z-50 mt-1 hidden max-h-72 overflow-y-auto border border-pdw-border bg-pdw-white shadow-lg"></div>
-      </div>
+  <div id="mobile-search-panel" class="hidden overflow-visible border-t border-pdw-border bg-pdw-white lg:hidden">
+    <div class="site-search-container relative w-full px-6 py-4">
+      <input
+        type="search"
+        id="mobile-search-input"
+        placeholder="Search products..."
+        autocomplete="off"
+        class="site-search-input w-full border border-pdw-border bg-pdw-offwhite px-4 py-2 pr-10 text-sm text-pdw-ink placeholder:text-pdw-muted focus:border-pdw-tan focus:outline-none"
+      />
+      <svg xmlns="http://www.w3.org/2000/svg" class="pointer-events-none absolute right-9 top-1/2 h-4 w-4 -translate-y-1/2 text-pdw-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0a7 7 0 10-9.9-9.9 7 7 0 009.9 9.9z" />
+      </svg>
+      <div class="site-search-results absolute left-6 right-6 top-full z-50 mt-1 hidden max-h-72 overflow-y-auto border border-pdw-border bg-pdw-white shadow-lg"></div>
     </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden border-t border-pdw-border bg-pdw-white md:hidden">
     <nav class="flex flex-col items-end gap-1 px-6 py-4 text-right">
       {navItems.map((item) => (
         <a
@@ -175,6 +187,10 @@ const searchIndex = products.map((p) => ({
         if (event.key === "Escape") {
           container.querySelector(".site-search-results")?.classList.add("hidden");
           input.blur();
+          if (input.id === "mobile-search-input") {
+            document.getElementById("mobile-search-panel")?.classList.add("hidden");
+            document.getElementById("mobile-search-button")?.setAttribute("aria-expanded", "false");
+          }
         }
       });
     });
@@ -194,13 +210,28 @@ const searchIndex = products.map((p) => ({
   import { getCartCount } from "../lib/cart";
 
   function initMobileMenu() {
-    const button = document.getElementById("mobile-menu-button");
+    const menuButton = document.getElementById("mobile-menu-button");
     const menu = document.getElementById("mobile-menu");
-    if (!button || !menu) return;
-    button.addEventListener("click", () => {
+    const searchButton = document.getElementById("mobile-search-button");
+    const searchPanel = document.getElementById("mobile-search-panel");
+    const searchInput = document.getElementById("mobile-search-input");
+    if (!menuButton || !menu || !searchButton || !searchPanel) return;
+
+    menuButton.addEventListener("click", () => {
       const isHidden = menu.classList.contains("hidden");
+      searchPanel.classList.add("hidden");
+      searchButton.setAttribute("aria-expanded", "false");
       menu.classList.toggle("hidden");
-      button.setAttribute("aria-expanded", String(isHidden));
+      menuButton.setAttribute("aria-expanded", String(isHidden));
+    });
+
+    searchButton.addEventListener("click", () => {
+      const isHidden = searchPanel.classList.contains("hidden");
+      menu.classList.add("hidden");
+      menuButton.setAttribute("aria-expanded", "false");
+      searchPanel.classList.toggle("hidden");
+      searchButton.setAttribute("aria-expanded", String(isHidden));
+      if (isHidden) searchInput?.focus();
     });
   }
   initMobileMenu();
