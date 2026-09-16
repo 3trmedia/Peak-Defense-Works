@@ -168,9 +168,9 @@ const isAvailable = product.status !== "coming-soon";
             data-product-price={product.price}
             data-product-image={product.image ?? ""}
             class:list={[
-              "relative isolate flex-1 overflow-hidden border px-6 py-3 font-display text-sm uppercase tracking-wide transition-colors sm:flex-none sm:px-10",
+              "relative isolate flex-1 overflow-hidden border px-6 py-3 font-display text-sm uppercase tracking-wide transition-transform duration-200 sm:flex-none sm:px-10",
               isAvailable
-                ? "border-pdw-tan bg-pdw-tan text-pdw-ink before:absolute before:inset-0 before:z-0 before:origin-left before:scale-x-0 before:bg-pdw-ink before:transition-transform before:duration-500 before:ease-out hover:bg-pdw-tan-dark"
+                ? "border-pdw-tan bg-pdw-tan text-pdw-ink hover:scale-105"
                 : "cursor-not-allowed border-pdw-border text-pdw-muted",
             ]}
           >
@@ -209,6 +209,7 @@ const isAvailable = product.status !== "coming-soon";
 
 <script>
   import { addToCart } from "../../lib/cart";
+  import { flipToOutlineCart } from "../../lib/cartAnimations";
 
   function initQuantityStepper() {
     const valueEl = document.getElementById("qty-value");
@@ -249,18 +250,7 @@ const isAvailable = product.status !== "coming-soon";
         qty
       );
       button.dataset.added = "true";
-
-      // Fill animation, then settle into a dark-filled "Go to Cart" state so
-      // it reads visually different from the tan-filled "Add to Cart" button.
-      button.classList.remove("before:scale-x-0");
-      button.classList.add("before:scale-x-100");
-
-      setTimeout(() => {
-        button.classList.remove("bg-pdw-tan", "text-pdw-ink", "hover:bg-pdw-tan-dark");
-        button.classList.add("bg-pdw-ink", "text-pdw-white", "border-pdw-ink", "hover:opacity-90");
-        button.querySelector(".add-label")?.classList.add("hidden");
-        button.querySelector(".cart-label")?.classList.remove("hidden");
-      }, 400);
+      flipToOutlineCart(button);
     });
   }
   initAddToCart();

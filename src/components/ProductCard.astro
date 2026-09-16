@@ -3,11 +3,9 @@ import type { Product } from "../data/products";
 
 interface Props {
   product: Product;
-  /** Which experimental Add-to-Cart animation (1-8) to use, for A/B comparison. Omit for the default. */
-  cartAnim?: number;
 }
 
-const { product, cartAnim } = Astro.props;
+const { product } = Astro.props;
 
 const badgeText = product.status === "coming-soon" ? "In Development" : product.status === "sale" ? "Sale" : null;
 
@@ -15,30 +13,9 @@ const badgeClasses =
   product.status === "sale"
     ? "bg-pdw-tan text-pdw-ink"
     : "bg-pdw-ink/85 text-pdw-white";
-
-const cartAnimNames: Record<number, string> = {
-  1: "1. Fly to Cart",
-  2: "2. Firework Burst",
-  3: "3. Cross-Fade",
-  4: "4. 3D Flip",
-  5: "5. Slide Up",
-  6: "6. Ripple Expand",
-  7: "7. Shake + Pop",
-  8: "8. Outline Sweep",
-};
-
-// Variant 4 test: button starts filled (as if always hovered), grows
-// slightly on hover instead of changing color, then flips to an outlined
-// "Go to Cart" so the state change itself is the signal, not a color swap.
-const startsFilled = cartAnim === 4;
 ---
 
 <div class="group flex flex-col border border-pdw-border bg-pdw-white transition-colors hover:border-pdw-tan">
-  {cartAnim && (
-    <p class="border-b border-pdw-border bg-pdw-tan-light px-3 py-1.5 text-center font-display text-[10px] uppercase tracking-widest text-pdw-tan-dark">
-      Testing: {cartAnimNames[cartAnim]}
-    </p>
-  )}
   <a href={`/products/${product.slug}`} class="flex flex-1 flex-col">
     <div class="relative aspect-square overflow-hidden bg-pdw-offwhite">
       {badgeText && (
@@ -86,15 +63,12 @@ const startsFilled = cartAnim === 4;
         "add-to-cart-button relative isolate overflow-hidden whitespace-nowrap font-display text-xs uppercase tracking-wide px-3 py-2",
         product.status === "coming-soon"
           ? "cursor-not-allowed border border-pdw-border text-pdw-muted"
-          : startsFilled
-            ? "border border-pdw-tan bg-pdw-tan text-pdw-ink transition-transform duration-200 hover:scale-105"
-            : "border border-pdw-tan text-pdw-ink hover:bg-pdw-tan hover:text-pdw-ink",
+          : "border border-pdw-tan bg-pdw-tan text-pdw-ink transition-transform duration-200 hover:scale-105",
       ]}
       data-product-slug={product.slug}
       data-product-name={product.name}
       data-product-price={product.price}
       data-product-image={product.image ?? ""}
-      data-cart-anim={cartAnim ?? ""}
     >
       {product.status === "coming-soon" ? (
         "Notify"
@@ -116,7 +90,7 @@ const startsFilled = cartAnim === 4;
 
 <script>
   import { addToCart } from "../lib/cart";
-  import { cartAnimations } from "../lib/cartAnimations";
+  import { flipToOutlineCart } from "../lib/cartAnimations";
 
   function initAddToCartButtons() {
     document.querySelectorAll<HTMLButtonElement>(".add-to-cart-button:not([disabled])").forEach((button) => {
@@ -127,7 +101,7 @@ const startsFilled = cartAnim === 4;
           window.location.href = "/cart";
           return;
         }
-        const { productSlug, productName, productPrice, productImage, cartAnim } = button.dataset;
+        const { productSlug, productName, productPrice, productImage } = button.dataset;
         if (!productSlug || !productName) return;
         addToCart({
           slug: productSlug,
@@ -136,9 +110,7 @@ const startsFilled = cartAnim === 4;
           image: productImage || undefined,
         });
         button.dataset.added = "true";
-
-        const variant = cartAnimations[Number(cartAnim)] ?? cartAnimations[3];
-        variant(button);
+        flipToOutlineCart(button);
       });
     });
   }
