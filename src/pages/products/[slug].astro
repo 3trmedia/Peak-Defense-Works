@@ -155,13 +155,18 @@ const isAvailable = product.status !== "coming-soon";
 
         <div class="mt-8 flex flex-wrap items-center gap-4">
           <div class="flex items-center border border-pdw-border">
-            <button type="button" class="px-4 py-3 text-pdw-ink hover:bg-pdw-offwhite" aria-label="Decrease quantity">&minus;</button>
-            <span class="w-10 text-center font-display text-sm">1</span>
-            <button type="button" class="px-4 py-3 text-pdw-ink hover:bg-pdw-offwhite" aria-label="Increase quantity">+</button>
+            <button type="button" id="qty-decrease" class="px-4 py-3 text-pdw-ink hover:bg-pdw-offwhite" aria-label="Decrease quantity">&minus;</button>
+            <span id="qty-value" class="w-10 text-center font-display text-sm">1</span>
+            <button type="button" id="qty-increase" class="px-4 py-3 text-pdw-ink hover:bg-pdw-offwhite" aria-label="Increase quantity">+</button>
           </div>
           <button
             type="button"
+            id="add-to-cart-button"
             disabled={!isAvailable}
+            data-product-slug={product.slug}
+            data-product-name={product.name}
+            data-product-price={product.price}
+            data-product-image={product.image ?? ""}
             class:list={[
               "flex-1 border px-6 py-3 font-display text-sm uppercase tracking-wide transition-colors sm:flex-none sm:px-10",
               isAvailable
@@ -196,6 +201,53 @@ const isAvailable = product.status !== "coming-soon";
 </Layout>
 
 <script>
+  import { addToCart } from "../../lib/cart";
+
+  function initQuantityStepper() {
+    const valueEl = document.getElementById("qty-value");
+    const decreaseBtn = document.getElementById("qty-decrease");
+    const increaseBtn = document.getElementById("qty-increase");
+    if (!valueEl || !decreaseBtn || !increaseBtn) return;
+
+    const getQty = () => Number(valueEl.textContent) || 1;
+    decreaseBtn.addEventListener("click", () => {
+      valueEl.textContent = String(Math.max(1, getQty() - 1));
+    });
+    increaseBtn.addEventListener("click", () => {
+      valueEl.textContent = String(Math.min(99, getQty() + 1));
+    });
+  }
+  initQuantityStepper();
+
+  function initAddToCart() {
+    const button = document.getElementById("add-to-cart-button") as HTMLButtonElement | null;
+    const valueEl = document.getElementById("qty-value");
+    if (!button || button.disabled) return;
+
+    button.addEventListener("click", () => {
+      const { productSlug, productName, productPrice, productImage } = button.dataset;
+      if (!productSlug || !productName) return;
+      const qty = Number(valueEl?.textContent) || 1;
+      addToCart(
+        {
+          slug: productSlug,
+          name: productName,
+          price: Number(productPrice) || 0,
+          image: productImage || undefined,
+        },
+        qty
+      );
+      const original = button.textContent;
+      button.textContent = "Added to Cart!";
+      button.disabled = true;
+      setTimeout(() => {
+        button.textContent = original;
+        button.disabled = false;
+      }, 1200);
+    });
+  }
+  initAddToCart();
+
   function initGallery() {
     const mainImage = document.getElementById("gallery-main-image") as HTMLImageElement | null;
     const thumbs = document.querySelectorAll<HTMLButtonElement>(".gallery-thumb");
