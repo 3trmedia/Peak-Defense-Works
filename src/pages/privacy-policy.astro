@@ -30,10 +30,8 @@ const link = "text-pdw-tan-dark underline hover:text-pdw-ink";
       <div>
         <h2 class={sectionHeading}>Overview</h2>
         <p class={body}>
-          Peak Defense Works ("we," "our," or "us") operates this website. This storefront is currently a demo in
-          progress &mdash; our full catalog and checkout are still being built out, so most of this policy
-          describes how we handle the information you give us today (contact forms, email signup) and how things
-          will work once ordering goes live.
+          Peak Defense Works ("we," "our," or "us") operates this website, where we sell TX22 chassis systems and
+          accessories directly to customers, with checkout and payment processing active on the site.
         </p>
         <p class={body}>We do not sell your personal information to third parties.</p>
       </div>
@@ -44,7 +42,7 @@ const link = "text-pdw-tan-dark underline hover:text-pdw-ink";
         <ul class={list}>
           <li><strong>Contact details</strong> &mdash; name, email address, and any message you send us.</li>
           <li><strong>Email signup information</strong> &mdash; your email address if you join our product drop list.</li>
-          <li><strong>Order information (once checkout is live)</strong> &mdash; shipping address, billing address, and order details. Payment card information is processed directly by our payment processor and is never stored on our servers.</li>
+          <li><strong>Order information</strong> &mdash; shipping address, billing address, and order details. Payment card information is entered directly with our payment processor and is never stored on our servers.</li>
           <li><strong>Device and usage information</strong> &mdash; standard browser and hosting logs, such as IP address, browser type, and pages visited.</li>
         </ul>
       </div>
@@ -55,7 +53,7 @@ const link = "text-pdw-tan-dark underline hover:text-pdw-ink";
         <ul class={list}>
           <li><strong>Directly from you</strong> &mdash; when you fill out a form, sign up for email updates, or place an order.</li>
           <li><strong>Automatically</strong> &mdash; through standard web server and hosting logs as you browse the site.</li>
-          <li><strong>From our service providers</strong> &mdash; such as our hosting provider and, once checkout is live, our payment processor.</li>
+          <li><strong>From our service providers</strong> &mdash; including our hosting provider, our form processor, and our payment processor.</li>
         </ul>
       </div>
 
@@ -65,7 +63,7 @@ const link = "text-pdw-tan-dark underline hover:text-pdw-ink";
         <ul class={list}>
           <li>Respond to your questions and requests</li>
           <li>Send product drop or promotional emails if you've opted in, and let you opt out at any time</li>
-          <li>Process, fulfill, and ship orders once checkout is live</li>
+          <li>Process, fulfill, and ship orders, including calculating applicable sales tax and shipping cost at checkout</li>
           <li>Maintain the security and proper functioning of the site</li>
           <li>Improve our products and this website</li>
         </ul>
@@ -79,8 +77,10 @@ const link = "text-pdw-tan-dark underline hover:text-pdw-ink";
         </p>
         <ul class={list}>
           <li><strong>Hosting:</strong> our website is hosted on Vercel, which processes standard server logs as part of normal hosting operations.</li>
-          <li><strong>Payment processing (once live):</strong> orders will be processed through a third-party payment processor, most likely Shopify Payments. That processor handles your payment details directly under its own privacy policy &mdash; see Shopify's <a class={link} href="https://www.shopify.com/legal/privacy" target="_blank" rel="noopener noreferrer">Consumer Privacy Policy</a> for reference on how that works.</li>
-          <li><strong>Shipping carriers (once live):</strong> to deliver your order, we'll share your shipping address with our shipping carrier.</li>
+          <li><strong>Payment processing:</strong> orders are processed through our payment processor, Payment Nerds. Payment Nerds handles your payment card details directly under its own privacy policy &mdash; see the <a class={link} href="https://paymentnerds.com/privacy-policy/" target="_blank" rel="noopener noreferrer">Payment Nerds Privacy Policy</a> for details on how that works.</li>
+          <li><strong>Form processing:</strong> messages submitted through our contact form and email signup are processed by Web3Forms, a third-party form-delivery service, so they can be routed to us by email.</li>
+          <li><strong>Shipping carriers:</strong> to deliver your order and calculate shipping cost, we share your shipping address with our shipping carrier.</li>
+          <li><strong>Sales tax:</strong> we use an automated tax calculation service at checkout to determine and collect any sales tax owed based on your shipping address.</li>
           <li><strong>Legal requirements:</strong> if required to comply with a subpoena, legal process, or to protect our rights.</li>
         </ul>
       </div>
@@ -88,8 +88,10 @@ const link = "text-pdw-tan-dark underline hover:text-pdw-ink";
       <div>
         <h2 class={sectionHeading}>Cookies</h2>
         <p class={body}>
-          This site does not currently use advertising or tracking cookies. Standard browser and hosting logs are
-          retained for security and performance purposes.
+          This site does not use advertising or tracking cookies of our own. Standard browser and hosting logs are
+          retained for security and performance purposes. Our payment processor may use its own cookies or similar
+          technology during checkout for fraud prevention and to process your payment &mdash; see their privacy
+          policy linked above for details.
         </p>
       </div>
 
@@ -113,9 +115,13 @@ const link = "text-pdw-tan-dark underline hover:text-pdw-ink";
         <h2 class={sectionHeading}>Security and Retention</h2>
         <p class={body}>
           We take reasonable measures to protect the information you share with us, but no method of transmission
-          or storage is completely secure. We retain your information only as long as needed to respond to your
-          inquiry, fulfill an order, or comply with our legal and business obligations.
+          or storage is completely secure. We keep your information only as long as it's needed:
         </p>
+        <ul class={list}>
+          <li><strong>Order and payment records</strong> are kept for as long as required by applicable tax, accounting, and consumer protection laws.</li>
+          <li><strong>Contact form messages</strong> are kept until your question or issue is resolved, then deleted or archived.</li>
+          <li><strong>Email signup information</strong> is kept until you unsubscribe or ask us to remove it.</li>
+        </ul>
       </div>
 
       <div>
@@ -127,6 +133,16 @@ const link = "text-pdw-tan-dark underline hover:text-pdw-ink";
           <li>Unsubscribe from marketing emails at any time using the link in any email or by contacting us directly</li>
         </ul>
         <p class={body}>To exercise any of these rights, contact us using the information below.</p>
+      </div>
+
+      <div>
+        <h2 class={sectionHeading}>California Residents</h2>
+        <p class={body}>
+          If you live in California, you have the right to know what personal information we've collected about
+          you, request its deletion, and opt out of the "sale" or "sharing" of personal information. We do not
+          sell or share your personal information, and we have not done so in the past 12 months. To exercise
+          these rights, contact us using the information below.
+        </p>
       </div>
 
       <div>
@@ -149,8 +165,8 @@ const link = "text-pdw-tan-dark underline hover:text-pdw-ink";
       <div>
         <h2 class={sectionHeading}>Changes to This Policy</h2>
         <p class={body}>
-          We may update this privacy policy as the site and storefront develop, especially once checkout goes
-          live. Any changes will be posted on this page with an updated date at the top.
+          We may update this privacy policy from time to time as our site, services, or legal obligations change.
+          Any changes will be posted on this page with an updated date at the top.
         </p>
       </div>
 
