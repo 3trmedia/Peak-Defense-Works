@@ -148,7 +148,7 @@ export const products: Product[] = [
     price: 24.99,
     category: "Parts & Accessories",
     useCase: "Tactical",
-    image: "/images/products/pistol-stand.jpg",
+    image: "/images/products/pistol-stand.webp",
     blurb: "Display stand that keeps your build upright and ready on the bench, at the shop, or on the table between strings.",
   },
   {
